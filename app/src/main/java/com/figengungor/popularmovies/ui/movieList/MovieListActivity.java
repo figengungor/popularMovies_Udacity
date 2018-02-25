@@ -2,6 +2,7 @@ package com.figengungor.popularmovies.ui.movieList;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,15 +17,18 @@ import android.widget.TextView;
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
+import com.figengungor.popularmovies.ui.movieDetail.MovieDetailActivity;
 import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.pnikosis.materialishprogress.ProgressWheel;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MovieListActivity extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity implements MovieAdapter.ItemListener {
 
     @BindView(R.id.movieRv)
     RecyclerView movieRv;
@@ -119,7 +123,9 @@ public class MovieListActivity extends AppCompatActivity {
     }
 
     private void showMovies(List<Movie> movies) {
-        MovieAdapter adapter = new MovieAdapter(movies);
+        movieRv.setVisibility(View.VISIBLE);
+        messageTv.setVisibility(View.GONE);
+        MovieAdapter adapter = new MovieAdapter(movies, this);
         movieRv.setAdapter(adapter);
     }
 
@@ -132,7 +138,14 @@ public class MovieListActivity extends AppCompatActivity {
     }
 
     private void showError(Throwable throwable) {
+        movieRv.setVisibility(View.GONE);
+        messageTv.setVisibility(View.VISIBLE);
         messageTv.setText(ErrorUtils.displayFriendlyErrorMessage(this, throwable));
     }
 
+    @Override
+    public void onItemClick(Movie movie) {
+        startActivity(new Intent(this, MovieDetailActivity.class)
+        .putExtra(MovieDetailActivity.EXTRA_MOVIE, Parcels.wrap(movie)));
+    }
 }

@@ -30,6 +30,7 @@ ext {
     archComponentsVersion = '1.1.0'
     materialishProgressVersion = '1.7'
     butterknifeVersion = '8.8.1'
+    parcelerVersion = '1.1.9'
 }
 
 dependencies {
@@ -58,6 +59,10 @@ dependencies {
     //Butterknife
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    //Parceler
+    implementation "org.parceler:parceler-api:$parcelerVersion"
+    annotationProcessor "org.parceler:parceler:$parcelerVersion"
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
