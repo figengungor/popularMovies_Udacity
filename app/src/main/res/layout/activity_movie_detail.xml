@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.figengungor.popularmovies.MovieDetailActivity">
+    tools:context="com.figengungor.popularmovies.ui.movieDetail.MovieDetailActivity">
 
     <ImageView
         android:id="@+id/backdropIv"
@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="@+id/titleTv"
         app:layout_constraintStart_toStartOf="@+id/titleTv"
         app:layout_constraintTop_toBottomOf="@+id/titleTv"
-        tools:text="@sample/movies.json/results/vote_average" />
+        tools:text="5.9/10" />
 
     <TextView
         android:id="@+id/releaseDateTv"
@@ -68,7 +68,11 @@
         app:layout_constraintEnd_toEndOf="@+id/ratingTv"
         app:layout_constraintStart_toStartOf="@+id/ratingTv"
         app:layout_constraintTop_toBottomOf="@+id/ratingTv"
-        tools:text="@sample/movies.json/results/release_date" />
+        tools:text="@sample/movies.json/results/release_date"
+        android:drawableStart="@drawable/ic_date_range_black_24dp"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:gravity="center_vertical"
+        android:drawablePadding="8dp"/>
 
     <android.support.constraint.Barrier
         android:id="@+id/barrierVertical"
@@ -80,14 +84,17 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
+        android:id="@+id/overViewTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/barrierVertical" />
+        app:layout_constraintTop_toTopOf="@+id/barrierVertical"
+        tools:text="@sample/movies.json/results/overview" />
 
 
 </android.support.constraint.ConstraintLayout>

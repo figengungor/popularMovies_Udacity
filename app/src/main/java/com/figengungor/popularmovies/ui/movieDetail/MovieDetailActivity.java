@@ -1,7 +1,9 @@
-package com.figengungor.popularmovies;
+package com.figengungor.popularmovies.ui.movieDetail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.figengungor.popularmovies.R;
 
 public class MovieDetailActivity extends AppCompatActivity {
 

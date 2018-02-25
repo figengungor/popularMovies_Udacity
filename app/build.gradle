@@ -26,7 +26,10 @@ ext {
     constraintLayoutVersion = '1.1.0-beta5'
     picassoVersion = '2.5.2'
     retrofitVersion = '2.3.0'
+    okHttp3Version = '3.9.1'
     archComponentsVersion = '1.1.0'
+    materialishProgressVersion = '1.7'
+    butterknifeVersion = '8.8.1'
 }
 
 dependencies {
@@ -41,12 +44,20 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$picassoVersion"
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:$archComponentsVersion"
+
+    //Materialish Progress
+    implementation "com.pnikosis:materialish-progress:$materialishProgressVersion"
+
+    //Butterknife
+    implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'

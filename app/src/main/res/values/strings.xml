@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">PopularMovies</string>
+
+
     <string name="backdrop_content_description">Movie backdrop image</string>
     <string name="poster_content_description">Movie poster image</string>
+
+    <!--Error messages-->
+    <string name="time_out">Time out!</string>
+    <string name="no_internet">No Internet!</string>
+    <string name="no_data_found">No data found!</string>
+    <string name="unexpected_error">Opsss. Unexpected error occured.</string>
+
+    <!--Movie List Type Values-->
+    <string name="popular" translatable="false">popular</string>
+    <string name="top_rated" translatable="false">top_rated</string>
+
+    <!--Movie List Type Options-->
+    <string name="popular_option">Popular</string>
+    <string name="top_rated_option">Top rated</string>
+
+
+    <string name="movie_list_type_default">@string/popular</string>
+    <string name="movie_list_type_spinner">Movie list type spinner</string>
 </resources>
