@@ -4,10 +4,12 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +32,7 @@ import butterknife.ButterKnife;
 
 public class MovieListActivity extends AppCompatActivity implements MovieAdapter.ItemListener {
 
+    private static final String TAG = MovieListActivity.class.getSimpleName();
     @BindView(R.id.movieRv)
     RecyclerView movieRv;
 
@@ -47,16 +50,25 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     MovieListViewModel viewModel;
 
+    boolean stupidSpinnerFirstTriggerCheck = true;
+
+    private static final String KEY_RECYCLERVIEW_STATE = "recyclerview_state";
+    Parcelable recyclerview_state;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
         ButterKnife.bind(this);
-        init();
+        init(savedInstanceState);
 
     }
 
-    private void init() {
+    private void init(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            recyclerview_state = savedInstanceState.getParcelable(KEY_RECYCLERVIEW_STATE);
+        }
+
         viewModel = ViewModelProviders.
                 of(this, new MovieListViewModelFactory(getApplication(), DataManager.getInstance(getApplication())))
                 .get(MovieListViewModel.class);
@@ -88,6 +100,13 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     private void setupUI() {
         setupToolbar();
         setupSpinner();
+
+        if(viewModel.getMovieList().getValue()!=null) {
+            showMovies(viewModel.getMovieList().getValue());
+        } else {
+            viewModel.getMovies();
+            Log.d(TAG, "setupUI: init called it" );
+        }
     }
 
     private void setupToolbar() {
@@ -99,7 +118,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
                 R.array.movie_list_type_options, R.layout.item_spinner_movie_list_type);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner.setAdapter(adapter);
+
 
         final String[] movieListTypeValues = getResources().getStringArray(R.array.movie_list_type_values);
         String movieListType = viewModel.getMovieListType();
@@ -108,11 +127,19 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
                 spinner.setSelection(i);
         }
 
+        spinner.setAdapter(adapter);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                viewModel.setMovieListType(movieListTypeValues[position]);
-                viewModel.getMovies();
+                if (stupidSpinnerFirstTriggerCheck) {
+                    stupidSpinnerFirstTriggerCheck = false;
+                } else{
+                    viewModel.setMovieListType(movieListTypeValues[position]);
+                    viewModel.getMovies();
+                    Log.d(TAG, "onItemSelected: Spinner called it" );
+                }
+
             }
 
             @Override
@@ -127,6 +154,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         messageTv.setVisibility(View.GONE);
         MovieAdapter adapter = new MovieAdapter(movies, this);
         movieRv.setAdapter(adapter);
+        if (recyclerview_state != null) {
+            movieRv.getLayoutManager().onRestoreInstanceState(recyclerview_state);
+        }
     }
 
     private void showLoadingIndicator(Boolean isLoading) {
@@ -146,6 +176,13 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     @Override
     public void onItemClick(Movie movie) {
         startActivity(new Intent(this, MovieDetailActivity.class)
-        .putExtra(MovieDetailActivity.EXTRA_MOVIE, Parcels.wrap(movie)));
+                .putExtra(MovieDetailActivity.EXTRA_MOVIE, Parcels.wrap(movie)));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Parcelable state = movieRv.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(KEY_RECYCLERVIEW_STATE, state);
     }
 }
