@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.model.Movie;
+import com.figengungor.popularmovies.utils.DateUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
 
 import org.parceler.Parcels;
@@ -56,18 +57,26 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
     private void setupContent() {
-        ImageUtils.loadImageUrl(movie.getBackdropPath(), backdropIv, ImageUtils.ImageType.BACKDROP);
-        ImageUtils.loadImageUrl(movie.getPosterPath(), posterIv, ImageUtils.ImageType.POSTER);
-        titleTv.setText(movie.getTitle());
-        releaseDateTv.setText(movie.getReleaseDate());
-        ratingTv.setText(getString(R.string.rating, movie.getVoteAverage()));
-        overviewTv.setText(movie.getOverview());
+
+        String backdropPath = movie.getBackdropPath();
+        String posterPath = movie.getPosterPath();
+        String title = movie.getTitle();
+        String friendlyReleaseDate = DateUtils.getFriendlyReleaseDate(movie.getReleaseDate());
+        double voteAverage = movie.getVoteAverage();
+        String overview = movie.getOverview();
+
+        ImageUtils.loadImageUrl(backdropPath, backdropIv, ImageUtils.ImageType.BACKDROP);
+        ImageUtils.loadImageUrl(posterPath, posterIv, ImageUtils.ImageType.POSTER);
+        titleTv.setText(title);
+        releaseDateTv.setText(friendlyReleaseDate);
+        ratingTv.setText(getString(R.string.rating, voteAverage));
+        overviewTv.setText(overview);
 
         //Accessibility setup
-        titleTv.setContentDescription(getString(R.string.a11y_movie_title,movie.getTitle()));
-        releaseDateTv.setContentDescription(getString(R.string.a11y_release_date, movie.getReleaseDate()));
-        ratingTv.setContentDescription(getString(R.string.a11y_rating, movie.getVoteAverage()));
-        overviewTv.setContentDescription(movie.getOverview());
+        titleTv.setContentDescription(getString(R.string.a11y_movie_title, title));
+        releaseDateTv.setContentDescription(getString(R.string.a11y_release_date, friendlyReleaseDate));
+        ratingTv.setContentDescription(getString(R.string.a11y_rating, voteAverage));
+        overviewTv.setContentDescription(overview);
 
     }
 }

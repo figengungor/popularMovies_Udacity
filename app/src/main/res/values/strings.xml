@@ -15,7 +15,7 @@
     <string name="time_out">Time out!</string>
     <string name="no_internet">No Internet!</string>
     <string name="no_data_found">No data found!</string>
-    <string name="unexpected_error">Opsss. Unexpected error occured.</string>
+    <string name="unexpected_error">Opsss. Unexpected error occurred.</string>
 
     <!--Movie List Type Values-->
     <string name="popular" translatable="false">popular</string>
