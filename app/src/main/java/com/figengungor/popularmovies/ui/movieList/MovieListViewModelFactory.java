@@ -1,6 +1,5 @@
 package com.figengungor.popularmovies.ui.movieList;
 
-import android.app.Application;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.figengungor.popularmovies.data.DataManager;
@@ -12,15 +11,13 @@ import com.figengungor.popularmovies.data.DataManager;
 public class MovieListViewModelFactory implements ViewModelProvider.Factory {
 
     DataManager dataManager;
-    Application application;
 
-    public MovieListViewModelFactory(Application application, DataManager dataManager) {
-        this.application = application;
+    public MovieListViewModelFactory(DataManager dataManager) {
         this.dataManager = dataManager;
     }
 
     @Override
     public MovieListViewModel create(Class modelClass) {
-        return new MovieListViewModel(application, dataManager);
+        return new MovieListViewModel(dataManager);
     }
 }

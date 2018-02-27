@@ -50,8 +50,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     MovieListViewModel viewModel;
 
-    boolean stupidSpinnerFirstTriggerCheck = true;
-
     private static final String KEY_RECYCLERVIEW_STATE = "recyclerview_state";
     Parcelable recyclerview_state;
 
@@ -70,7 +68,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         }
 
         viewModel = ViewModelProviders.
-                of(this, new MovieListViewModelFactory(getApplication(), DataManager.getInstance(getApplication())))
+                of(this, new MovieListViewModelFactory(DataManager.getInstance(getApplication())))
                 .get(MovieListViewModel.class);
 
         viewModel.getMovieList().observe(this, new Observer<List<Movie>>() {
@@ -100,12 +98,15 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     private void setupUI() {
         setupToolbar();
         setupSpinner();
+        loadData();
+    }
 
-        if(viewModel.getMovieList().getValue()!=null) {
+    private void loadData() {
+        if (viewModel.getMovieList().getValue() != null) {
             showMovies(viewModel.getMovieList().getValue());
         } else {
             viewModel.getMovies();
-            Log.d(TAG, "setupUI: init called it" );
+            Log.d(TAG, "setupUI: init called it");
         }
     }
 
@@ -119,27 +120,21 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
+        spinner.setAdapter(adapter);
 
         final String[] movieListTypeValues = getResources().getStringArray(R.array.movie_list_type_values);
         String movieListType = viewModel.getMovieListType();
         for (int i = 0; i < movieListTypeValues.length; i++) {
             if (movieListType.equals(movieListTypeValues[i]))
-                spinner.setSelection(i);
+                spinner.setSelection(i, false);
         }
-
-        spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (stupidSpinnerFirstTriggerCheck) {
-                    stupidSpinnerFirstTriggerCheck = false;
-                } else{
                     viewModel.setMovieListType(movieListTypeValues[position]);
                     viewModel.getMovies();
-                    Log.d(TAG, "onItemSelected: Spinner called it" );
-                }
-
+                    Log.d(TAG, "onItemSelected: Spinner called it");
             }
 
             @Override
@@ -147,6 +142,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
             }
         });
+
     }
 
     private void showMovies(List<Movie> movies) {

@@ -1,8 +1,7 @@
 package com.figengungor.popularmovies.ui.movieList;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
 
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
@@ -17,7 +16,7 @@ import static com.figengungor.popularmovies.utils.ErrorUtils.EMPTY;
  * Created by figengungor on 2/20/2018.
  */
 
-public class MovieListViewModel extends AndroidViewModel {
+public class MovieListViewModel extends ViewModel {
 
     MutableLiveData<List<Movie>> movieList;
     MutableLiveData<Boolean> isLoading;
@@ -25,8 +24,7 @@ public class MovieListViewModel extends AndroidViewModel {
 
     DataManager dataManager;
 
-    public MovieListViewModel(Application application, DataManager dataManager) {
-        super(application);
+    public MovieListViewModel(DataManager dataManager) {
         this.dataManager = dataManager;
         movieList = new MutableLiveData<>();
         isLoading = new MutableLiveData<>();
