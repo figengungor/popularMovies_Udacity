@@ -1,4 +1,10 @@
-<resources>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -                                                                                          -
+  - Throughout this file, you will see <xliff:g> tags. These help any potential translators    -
+  - properly translate your strings and also give developers that are looking at your strings  -
+  - an idea of exactly how they are used.                                                      -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="app_name">PopularMovies</string>
 
 
@@ -22,4 +28,15 @@
 
     <string name="movie_list_type_default">@string/popular</string>
     <string name="movie_list_type_spinner">Movie list type spinner</string>
+
+    <!--Movie Detail-->
+    <!--https://stackoverflow.com/questions/24785305/android-getstring-xliff-format-float-double-->
+    <string name="rating"><xliff:g id="rating">%1$.1f</xliff:g>/10</string>
+    
+    <!--Accessibility-->
+    <string name="a11y_movie_title">Movie title: <xliff:g id="title">%1$s</xliff:g></string>
+    <string name="a11y_release_date">Release date: <xliff:g id="release_date">%1$s</xliff:g></string>
+    <string name="a11y_rating">Rating: <xliff:g id="rating">%1$.1f</xliff:g> over 10</string>
+    <string name="a11y_overview">Overview: <xliff:g id="overview">%1$s</xliff:g></string>
+
 </resources>

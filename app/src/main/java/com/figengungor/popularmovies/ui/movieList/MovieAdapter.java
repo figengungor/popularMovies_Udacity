@@ -62,6 +62,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
         public void bindItem(Movie movie) {
             ImageUtils.loadImageUrl(movie.getPosterPath(), posterIv, ImageUtils.ImageType.POSTER);
+            posterIv.setContentDescription(movie.getTitle());
         }
     }
 

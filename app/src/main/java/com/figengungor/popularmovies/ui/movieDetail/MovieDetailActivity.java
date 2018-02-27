@@ -60,7 +60,14 @@ public class MovieDetailActivity extends AppCompatActivity {
         ImageUtils.loadImageUrl(movie.getPosterPath(), posterIv, ImageUtils.ImageType.POSTER);
         titleTv.setText(movie.getTitle());
         releaseDateTv.setText(movie.getReleaseDate());
-        ratingTv.setText(movie.getVoteAverage() + "/10");
+        ratingTv.setText(getString(R.string.rating, movie.getVoteAverage()));
         overviewTv.setText(movie.getOverview());
+
+        //Accessibility setup
+        titleTv.setContentDescription(getString(R.string.a11y_movie_title,movie.getTitle()));
+        releaseDateTv.setContentDescription(getString(R.string.a11y_release_date, movie.getReleaseDate()));
+        ratingTv.setContentDescription(getString(R.string.a11y_rating, movie.getVoteAverage()));
+        overviewTv.setContentDescription(movie.getOverview());
+
     }
 }
