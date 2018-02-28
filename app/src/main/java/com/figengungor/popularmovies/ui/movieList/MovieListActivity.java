@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 
 public class MovieListActivity extends AppCompatActivity implements MovieAdapter.ItemListener {
 
-    private static final String TAG = MovieListActivity.class.getSimpleName();
+
     @BindView(R.id.movieRv)
     RecyclerView movieRv;
 
@@ -49,7 +49,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     Spinner spinner;
 
     MovieListViewModel viewModel;
-
+    private static final String TAG = MovieListActivity.class.getSimpleName();
     private static final String KEY_RECYCLERVIEW_STATE = "recyclerview_state";
     Parcelable recyclerViewState;
 
@@ -132,6 +132,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                movieRv.setVisibility(View.GONE);
                 viewModel.setMovieListType(movieListTypeValues[position]);
                 viewModel.getMovies();
                 Log.d(TAG, "onItemSelected: Spinner called it");
