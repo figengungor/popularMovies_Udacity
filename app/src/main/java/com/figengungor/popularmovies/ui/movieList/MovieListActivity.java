@@ -51,7 +51,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     MovieListViewModel viewModel;
 
     private static final String KEY_RECYCLERVIEW_STATE = "recyclerview_state";
-    Parcelable recyclerview_state;
+    Parcelable recyclerviewState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     private void init(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            recyclerview_state = savedInstanceState.getParcelable(KEY_RECYCLERVIEW_STATE);
+            recyclerviewState = savedInstanceState.getParcelable(KEY_RECYCLERVIEW_STATE);
         }
 
         viewModel = ViewModelProviders.
@@ -132,9 +132,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    viewModel.setMovieListType(movieListTypeValues[position]);
-                    viewModel.getMovies();
-                    Log.d(TAG, "onItemSelected: Spinner called it");
+                viewModel.setMovieListType(movieListTypeValues[position]);
+                viewModel.getMovies();
+                Log.d(TAG, "onItemSelected: Spinner called it");
             }
 
             @Override
@@ -150,8 +150,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         messageTv.setVisibility(View.GONE);
         MovieAdapter adapter = new MovieAdapter(movies, this);
         movieRv.setAdapter(adapter);
-        if (recyclerview_state != null) {
-            movieRv.getLayoutManager().onRestoreInstanceState(recyclerview_state);
+        if (recyclerviewState != null) {
+            movieRv.getLayoutManager().onRestoreInstanceState(recyclerviewState);
         }
     }
 
