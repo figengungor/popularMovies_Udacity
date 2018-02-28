@@ -51,7 +51,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     MovieListViewModel viewModel;
 
     private static final String KEY_RECYCLERVIEW_STATE = "recyclerview_state";
-    Parcelable recyclerviewState;
+    Parcelable recyclerViewState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     private void init(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            recyclerviewState = savedInstanceState.getParcelable(KEY_RECYCLERVIEW_STATE);
+            recyclerViewState = savedInstanceState.getParcelable(KEY_RECYCLERVIEW_STATE);
         }
 
         viewModel = ViewModelProviders.
@@ -150,8 +150,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         messageTv.setVisibility(View.GONE);
         MovieAdapter adapter = new MovieAdapter(movies, this);
         movieRv.setAdapter(adapter);
-        if (recyclerviewState != null) {
-            movieRv.getLayoutManager().onRestoreInstanceState(recyclerviewState);
+        if (recyclerViewState != null) {
+            movieRv.getLayoutManager().onRestoreInstanceState(recyclerViewState);
+            recyclerViewState = null;
         }
     }
 
