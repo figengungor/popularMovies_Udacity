@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -98,7 +99,14 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     private void setupUI() {
         setupToolbar();
         setupSpinner();
+        setupLayoutManager();
         loadData();
+    }
+
+    private void setupLayoutManager() {
+        int spanCount = getResources().getInteger(R.integer.spanCount);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, spanCount);
+        movieRv.setLayoutManager(gridLayoutManager);
     }
 
     private void loadData() {
