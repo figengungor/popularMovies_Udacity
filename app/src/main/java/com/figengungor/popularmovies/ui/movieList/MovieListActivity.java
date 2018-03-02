@@ -130,6 +130,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void setupSpinner() {

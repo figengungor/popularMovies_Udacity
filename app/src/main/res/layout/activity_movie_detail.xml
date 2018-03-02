@@ -52,7 +52,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/posterIv"
             app:layout_constraintTop_toTopOf="@+id/posterIv"
-            tools:text="@sample/movies.json/results/title" />
+            tools:text="@sample/movies.json/results/title"
+            android:fontFamily="@font/play_bold"/>
 
         <TextView
             android:id="@+id/ratingTv"
@@ -67,7 +68,8 @@
             app:layout_constraintEnd_toEndOf="@+id/titleTv"
             app:layout_constraintStart_toStartOf="@+id/titleTv"
             app:layout_constraintTop_toBottomOf="@+id/titleTv"
-            tools:text="5.9/10" />
+            tools:text="5.9/10"
+            android:fontFamily="@font/play_regular"/>
 
         <TextView
             android:id="@+id/releaseDateTv"
@@ -82,7 +84,23 @@
             app:layout_constraintEnd_toEndOf="@+id/ratingTv"
             app:layout_constraintStart_toEndOf="@+id/dateIv"
             app:layout_constraintTop_toBottomOf="@+id/ratingTv"
-            tools:text="@sample/movies.json/results/release_date" />
+            tools:text="@sample/movies.json/results/release_date"
+            android:fontFamily="@font/play_regular"/>
+
+        <ImageView
+            android:id="@+id/dateIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            android:tint="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/releaseDateTv"
+            app:layout_constraintEnd_toStartOf="@+id/releaseDateTv"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/ratingTv"
+            app:layout_constraintTop_toTopOf="@+id/releaseDateTv"
+            app:srcCompat="@drawable/ic_date_range_black_24dp" />
 
         <android.support.constraint.Barrier
             android:id="@+id/barrierVertical"
@@ -107,22 +125,9 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/barrierVertical"
-            tools:text="@sample/movies.json/results/overview" />
+            tools:text="@sample/movies.json/results/overview"
+            android:fontFamily="@font/play_regular"/>
 
-        <ImageView
-            android:id="@+id/dateIv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:contentDescription="@null"
-            android:tint="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@+id/releaseDateTv"
-            app:layout_constraintEnd_toStartOf="@+id/releaseDateTv"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@+id/ratingTv"
-            app:layout_constraintTop_toTopOf="@+id/releaseDateTv"
-            app:srcCompat="@drawable/ic_date_range_black_24dp" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
