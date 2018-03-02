@@ -17,9 +17,11 @@
             android:id="@+id/backdropIv"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:contentDescription="@string/backdrop_content_description"
             app:layout_constraintDimensionRatio="780:439"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineCenterVertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/backdrop" />
@@ -27,26 +29,25 @@
         <ImageView
             android:id="@+id/posterIv"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
             android:contentDescription="@string/poster_content_description"
-            app:layout_constraintDimensionRatio="342:513"
             android:scaleType="centerCrop"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineCenterVertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backdropIv"
-            app:srcCompat="@drawable/poster" />
+            app:layout_constraintDimensionRatio="342:513"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelinePoster"
+            app:layout_constraintTop_toTopOf="@+id/overviewTv"
+            app:srcCompat="@drawable/poster"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guidelineCenterVertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.35" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <TextView
             android:id="@+id/titleTv"
@@ -54,14 +55,14 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/play_bold"
             android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guidelineCenterVertical"
-            app:layout_constraintTop_toTopOf="@+id/posterIv"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="@sample/movies.json/results/title" />
 
         <TextView
@@ -117,7 +118,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="posterIv,releaseDateTv"
+            app:constraint_referenced_ids="releaseDateTv,backdropIv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -131,11 +132,17 @@
             android:fontFamily="@font/play_regular"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@+id/guidelinePoster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/barrierVertical"
             tools:text="@sample/movies.json/results/overview" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePoster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
