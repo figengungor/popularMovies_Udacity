@@ -38,5 +38,6 @@
     <string name="a11y_release_date">Release date: <xliff:g id="release_date">%1$s</xliff:g></string>
     <string name="a11y_rating">Rating: <xliff:g id="rating">%1$.1f</xliff:g> over 10</string>
     <string name="a11y_overview">Overview: <xliff:g id="overview">%1$s</xliff:g></string>
+    <string name="retry">Retry</string>
 
 </resources>

@@ -44,6 +44,7 @@ public class MovieListViewModel extends ViewModel {
                 isLoading.setValue(false);
                 if(response.getMovies()!=null && response.getMovies().size()>0) {
                     movieList.setValue(response.getMovies());
+                    error.setValue(null);
                 } else {
                     error.setValue(new Throwable(EMPTY));
                 }

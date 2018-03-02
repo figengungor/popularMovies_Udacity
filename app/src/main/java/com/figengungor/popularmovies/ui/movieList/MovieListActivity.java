@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,12 +31,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MovieListActivity extends AppCompatActivity implements MovieAdapter.ItemListener {
 
-
     @BindView(R.id.movieRv)
     RecyclerView movieRv;
+
+    @BindView(R.id.messageLayout)
+    ScrollView messageLayout;
 
     @BindView(R.id.messageTv)
     TextView messageTv;
@@ -48,6 +52,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     @BindView(R.id.spinner)
     Spinner spinner;
+
+    @OnClick(R.id.retryBtn)
+    void onRetryBtnClicked() {
+        viewModel.getMovies();
+    }
 
     MovieListViewModel viewModel;
     private static final String TAG = MovieListActivity.class.getSimpleName();
@@ -89,7 +98,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         viewModel.getError().observe(this, new Observer<Throwable>() {
             @Override
             public void onChanged(@Nullable Throwable throwable) {
-                showError(throwable);
+                if (throwable != null)
+                    showError(throwable);
             }
         });
 
@@ -156,7 +166,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     private void showMovies(List<Movie> movies) {
         movieRv.setVisibility(View.VISIBLE);
-        messageTv.setVisibility(View.GONE);
+        messageLayout.setVisibility(View.GONE);
         MovieAdapter adapter = new MovieAdapter(movies, this);
         movieRv.setAdapter(adapter);
         if (recyclerViewState != null) {
@@ -175,7 +185,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     private void showError(Throwable throwable) {
         movieRv.setVisibility(View.GONE);
-        messageTv.setVisibility(View.VISIBLE);
+        messageLayout.setVisibility(View.VISIBLE);
         messageTv.setText(ErrorUtils.displayFriendlyErrorMessage(this, throwable));
     }
 
