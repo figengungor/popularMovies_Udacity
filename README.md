@@ -1,6 +1,12 @@
 ## Popular Movies Stage 1
 
-![](app/src/main/ic_launcher-web.png)
+![](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+
+Second project for Android Nanodegree by Udacity.
+
+Popular or top-rated movies(posters) are displayed in a grid view.
+
+Detail page is displayed with poster, title, rating, release date and overview.
 
 ### Configuration
 
@@ -21,6 +27,23 @@ Movie List Landscape             |  Movie Detail Landscape
 ![](art/movie_list_landscape.png)  |  ![](art/movie_detail_landscape.png)
 
 ### Credits
+
+#### Libraries
+
+   [Retrofit](https://github.com/square/retrofit)
+
+   [Picasso](https://github.com/square/picasso)
+
+   [ViewModel and LiveData](https://developer.android.com/topic/libraries/architecture/adding-components.html)
+
+   [Materialish Progress](https://github.com/pnikosis/materialish-progress)
+
+   [Butterknife](https://github.com/JakeWharton/butterknife)
+
+   [Parceler](https://github.com/johncarl81/parceler)
+
+   [android-gif-drawable](https://github.com/koral--/android-gif-drawable)
+
 
 #### Icons
 Icon 1 | Icon 2
