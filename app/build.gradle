@@ -31,6 +31,7 @@ ext {
     materialishProgressVersion = '1.7'
     butterknifeVersion = '8.8.1'
     parcelerVersion = '1.1.9'
+    androidGifDrawableVersion = '1.2.10'
 }
 
 dependencies {
@@ -64,7 +65,8 @@ dependencies {
     implementation "org.parceler:parceler-api:$parcelerVersion"
     annotationProcessor "org.parceler:parceler:$parcelerVersion"
 
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+    //Gif
+    implementation "pl.droidsonroids.gif:android-gif-drawable:$androidGifDrawableVersion"
     
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
