@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.figengungor.popularmovies.R;
+import com.figengungor.popularmovies.Constants;
 
 /**
  * Created by figengungor on 2/25/2018.
@@ -16,12 +16,9 @@ public class PreferenceHelper {
 
     private static PreferenceHelper instance;
     private SharedPreferences sharedPreferences;
-    private Application application;
-
 
     private PreferenceHelper(Application application) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
-        this.application = application;
     }
 
     public static PreferenceHelper getInstance(Application application) {
@@ -30,7 +27,7 @@ public class PreferenceHelper {
     }
 
     public String getMovieListType() {
-        return sharedPreferences.getString(PREF_KEY_MOVIE_LIST_TYPE, application.getString(R.string.movie_list_type_default));
+        return sharedPreferences.getString(PREF_KEY_MOVIE_LIST_TYPE, Constants.DEFAULT_MOVIE_LIST_TYPE);
     }
 
     public void setMovieListType(String movieListType) {
