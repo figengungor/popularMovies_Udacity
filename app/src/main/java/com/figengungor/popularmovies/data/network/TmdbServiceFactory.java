@@ -22,8 +22,8 @@ public class TmdbServiceFactory {
 
     private static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static final String API_KEY= "api_key";
-    private static final int HTTP_READ_TIMEOUT = 10000;
-    private static final int HTTP_CONNECT_TIMEOUT = 6000;
+    private static final int HTTP_READ_TIMEOUT = 10;
+    private static final int HTTP_CONNECT_TIMEOUT = 6;
 
     public static TmdbService createService() {
         Retrofit retrofit = new Retrofit.Builder()
