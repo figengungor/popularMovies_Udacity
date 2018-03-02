@@ -15,9 +15,8 @@
 
         <ImageView
             android:id="@+id/backdropIv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:contentDescription="@string/backdrop_content_description"
             app:layout_constraintDimensionRatio="780:439"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,17 +26,27 @@
 
         <ImageView
             android:id="@+id/posterIv"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:adjustViewBounds="true"
             android:contentDescription="@string/poster_content_description"
-            app:layout_constraintDimensionRatio="2:3"
+            app:layout_constraintDimensionRatio="342:513"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/guidelinePoster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/backdropIv"
             app:srcCompat="@drawable/poster" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guidelinePoster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
 
         <TextView
             android:id="@+id/titleTv"
@@ -46,14 +55,14 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/play_bold"
             android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/posterIv"
+            app:layout_constraintStart_toStartOf="@+id/guidelinePoster"
             app:layout_constraintTop_toTopOf="@+id/posterIv"
-            tools:text="@sample/movies.json/results/title"
-            android:fontFamily="@font/play_bold"/>
+            tools:text="@sample/movies.json/results/title" />
 
         <TextView
             android:id="@+id/ratingTv"
@@ -62,14 +71,14 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/play_regular"
             android:gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="@+id/titleTv"
             app:layout_constraintStart_toStartOf="@+id/titleTv"
             app:layout_constraintTop_toBottomOf="@+id/titleTv"
-            tools:text="5.9/10"
-            android:fontFamily="@font/play_regular"/>
+            tools:text="5.9/10" />
 
         <TextView
             android:id="@+id/releaseDateTv"
@@ -79,13 +88,13 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="16dp"
             android:drawablePadding="8dp"
+            android:fontFamily="@font/play_regular"
             android:gravity="center"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="@+id/ratingTv"
             app:layout_constraintStart_toEndOf="@+id/dateIv"
             app:layout_constraintTop_toBottomOf="@+id/ratingTv"
-            tools:text="@sample/movies.json/results/release_date"
-            android:fontFamily="@font/play_regular"/>
+            tools:text="@sample/movies.json/results/release_date" />
 
         <ImageView
             android:id="@+id/dateIv"
@@ -119,15 +128,14 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/play_regular"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/barrierVertical"
-            tools:text="@sample/movies.json/results/overview"
-            android:fontFamily="@font/play_regular"/>
-
+            tools:text="@sample/movies.json/results/overview" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
