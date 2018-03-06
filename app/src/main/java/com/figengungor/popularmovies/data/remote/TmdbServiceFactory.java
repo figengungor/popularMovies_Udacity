@@ -1,5 +1,6 @@
 package com.figengungor.popularmovies.data.remote;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.figengungor.popularmovies.BuildConfig;
 
 import java.io.IOException;
@@ -57,6 +58,7 @@ public class TmdbServiceFactory {
             }
         });
         httpClientBuilder.addInterceptor(createLoggingInterceptor());
+        httpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
         return httpClientBuilder.build();
     }
 

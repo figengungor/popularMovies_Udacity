@@ -32,6 +32,7 @@ ext {
     butterknifeVersion = '8.8.1'
     parcelerVersion = '1.1.9'
     androidGifDrawableVersion = '1.2.10'
+    stethoVersion = '1.5.0'
 }
 
 dependencies {
@@ -67,6 +68,10 @@ dependencies {
 
     //Gif
     implementation "pl.droidsonroids.gif:android-gif-drawable:$androidGifDrawableVersion"
+
+    //Stetho
+    implementation "com.facebook.stetho:stetho:$stethoVersion"
+    implementation "com.facebook.stetho:stetho-okhttp3:$stethoVersion"
     
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
