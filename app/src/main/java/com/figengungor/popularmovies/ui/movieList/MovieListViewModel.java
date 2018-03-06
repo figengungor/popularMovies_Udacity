@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
 import com.figengungor.popularmovies.data.model.MovieListResponse;
-import com.figengungor.popularmovies.data.network.TmdbCallback;
+import com.figengungor.popularmovies.data.remote.TmdbCallback;
 
 import java.util.List;
 

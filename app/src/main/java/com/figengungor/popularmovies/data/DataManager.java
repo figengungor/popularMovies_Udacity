@@ -4,9 +4,9 @@ import android.app.Application;
 
 import com.figengungor.popularmovies.data.local.PreferenceHelper;
 import com.figengungor.popularmovies.data.model.MovieListResponse;
-import com.figengungor.popularmovies.data.network.TmdbCallback;
-import com.figengungor.popularmovies.data.network.TmdbService;
-import com.figengungor.popularmovies.data.network.TmdbServiceFactory;
+import com.figengungor.popularmovies.data.remote.TmdbCallback;
+import com.figengungor.popularmovies.data.remote.TmdbService;
+import com.figengungor.popularmovies.data.remote.TmdbServiceFactory;
 
 /**
  * Created by figengungor on 2/19/2018.

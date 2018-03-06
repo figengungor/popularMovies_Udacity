@@ -1,4 +1,4 @@
-package com.figengungor.popularmovies.data.network;
+package com.figengungor.popularmovies.data.remote;
 
 import com.figengungor.popularmovies.data.model.Status;
 import com.google.gson.Gson;
