@@ -23,6 +23,7 @@ import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
 import com.figengungor.popularmovies.ui.movieDetail.MovieDetailActivity;
 import com.figengungor.popularmovies.utils.ErrorUtils;
+import com.figengungor.popularmovies.utils.JsonUtils;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.parceler.Parcels;
@@ -84,6 +85,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         viewModel.getMovieList().observe(this, new Observer<List<Movie>>() {
             @Override
             public void onChanged(@Nullable List<Movie> movies) {
+                Log.d(TAG, "onChanged: getMovieList -> " + JsonUtils.convertModelToJsonString(movies));
                 showMovies(movies);
             }
         });
@@ -91,6 +93,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         viewModel.getIsLoading().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isLoading) {
+                Log.d(TAG, "onChanged: getIsLoading -> " + isLoading);
                 showLoadingIndicator(isLoading);
             }
         });
@@ -98,6 +101,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         viewModel.getError().observe(this, new Observer<Throwable>() {
             @Override
             public void onChanged(@Nullable Throwable throwable) {
+                Log.d(TAG, "onChanged: getError -> " + throwable);
                 if (throwable != null)
                     showError(throwable);
             }
@@ -120,11 +124,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     }
 
     private void loadData() {
-        if (viewModel.getMovieList().getValue() != null) {
-            showMovies(viewModel.getMovieList().getValue());
-        } else {
+        if (viewModel.getMovieList().getValue() == null) {
             viewModel.getMovies();
-            Log.d(TAG, "setupUI: init called it");
+            Log.d(TAG, "loadData: fetch movies");
         }
     }
 
