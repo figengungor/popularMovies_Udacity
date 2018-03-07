@@ -8,6 +8,8 @@ import com.figengungor.popularmovies.data.remote.TmdbCallback;
 import com.figengungor.popularmovies.data.remote.TmdbService;
 import com.figengungor.popularmovies.data.remote.TmdbServiceFactory;
 
+import retrofit2.Call;
+
 /**
  * Created by figengungor on 2/19/2018.
  */
@@ -28,9 +30,10 @@ public class DataManager {
         return instance;
     }
 
-    public void getMovieList(String movieListType, TmdbCallback<MovieListResponse> listener) {
-        tmdbService.getMovies(movieListType)
-                .enqueue(listener);
+    public Call getMovieList(String movieListType, TmdbCallback<MovieListResponse> listener) {
+        Call<MovieListResponse> call = tmdbService.getMovies(movieListType);
+        call.enqueue(listener);
+        return call;
     }
 
     public String getMovieListType(){

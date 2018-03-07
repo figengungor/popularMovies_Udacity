@@ -86,7 +86,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
             @Override
             public void onChanged(@Nullable List<Movie> movies) {
                 Log.d(TAG, "onChanged: getMovieList -> " + JsonUtils.convertModelToJsonString(movies));
-                showMovies(movies);
+                if (movies != null)
+                    showMovies(movies);
             }
         });
 

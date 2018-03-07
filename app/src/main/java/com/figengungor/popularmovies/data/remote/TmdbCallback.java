@@ -15,18 +15,18 @@ public abstract class TmdbCallback<T> implements Callback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
-        if (response.isSuccessful()) {
-            onSuccess(response.body());
-        } else {
-            Gson gson = new Gson();
-            Status status = gson.fromJson(response.errorBody().charStream(), Status.class);
-            onFail(new Throwable(status.getStatusMessage()));
-        }
+            if (response.isSuccessful()) {
+                onSuccess(response.body());
+            } else {
+                Gson gson = new Gson();
+                Status status = gson.fromJson(response.errorBody().charStream(), Status.class);
+                onFail(new Throwable(status.getStatusMessage()));
+            }
     }
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
-        onFail(t);
+        if (!call.isCanceled()) onFail(t);
     }
 
     public abstract void onSuccess(T response);

@@ -7,9 +7,8 @@ import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
 import com.figengungor.popularmovies.data.model.MovieListResponse;
 import com.figengungor.popularmovies.data.remote.TmdbCallback;
-
 import java.util.List;
-
+import retrofit2.Call;
 import static com.figengungor.popularmovies.utils.ErrorUtils.EMPTY;
 
 /**
@@ -21,7 +20,7 @@ public class MovieListViewModel extends ViewModel {
     MutableLiveData<List<Movie>> movieList;
     MutableLiveData<Boolean> isLoading;
     MutableLiveData<Throwable> error;
-
+    Call call;
     DataManager dataManager;
 
     public MovieListViewModel(DataManager dataManager) {
@@ -33,27 +32,31 @@ public class MovieListViewModel extends ViewModel {
 
     public void getMovies() {
         isLoading.setValue(true);
-        String movieListType = dataManager.getMovieListType();
+        String movieListType = getMovieListType();
         getMoviesRemote(movieListType);
     }
 
-    private void getMoviesRemote(String movieListType){
-        dataManager.getMovieList(movieListType, new TmdbCallback<MovieListResponse>() {
+    private void getMoviesRemote(String movieListType) {
+        movieList.setValue(null);
+        if (call != null) {
+            call.cancel();
+        }
+        call = dataManager.getMovieList(movieListType, new TmdbCallback<MovieListResponse>() {
             @Override
             public void onSuccess(MovieListResponse response) {
-                isLoading.setValue(false);
-                if(response.getMovies()!=null && response.getMovies().size()>0) {
-                    movieList.setValue(response.getMovies());
-                    error.setValue(null);
-                } else {
-                    error.setValue(new Throwable(EMPTY));
-                }
+                    isLoading.setValue(false);
+                    if (response.getMovies() != null && response.getMovies().size() > 0) {
+                        movieList.setValue(response.getMovies());
+                        error.setValue(null);
+                    } else {
+                        error.setValue(new Throwable(EMPTY));
+                    }
             }
 
             @Override
             public void onFail(Throwable throwable) {
-                isLoading.setValue(false);
-                error.setValue(throwable);
+                    isLoading.setValue(false);
+                    error.setValue(throwable);
             }
         });
     }
@@ -77,6 +80,4 @@ public class MovieListViewModel extends ViewModel {
     public String getMovieListType() {
         return dataManager.getMovieListType();
     }
-
-
 }
