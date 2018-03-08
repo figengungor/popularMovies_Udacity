@@ -12,9 +12,8 @@ import java.net.SocketTimeoutException;
  */
 
 public class ErrorUtils {
-
-
     public static final String EMPTY = "empty";
+    public static final String NO_FAVORITES = "no_favorites";
 
     public static String displayFriendlyErrorMessage(Context context, Throwable throwable) {
         throwable.printStackTrace();
@@ -26,6 +25,8 @@ public class ErrorUtils {
             String message = throwable.getMessage();
             if (message.equals(EMPTY)) {
                 return context.getString(R.string.no_data_found);
+            } else if (message.equals(NO_FAVORITES)) {
+                return context.getString(R.string.no_favorites_found);
             } else {
                 return message;
             }
@@ -33,5 +34,4 @@ public class ErrorUtils {
             return context.getString(R.string.unexpected_error);
         }
     }
-
 }

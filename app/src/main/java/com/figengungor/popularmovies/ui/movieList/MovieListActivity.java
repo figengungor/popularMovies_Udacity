@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,8 +35,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.figengungor.popularmovies.utils.ErrorUtils.NO_FAVORITES;
+
 public class MovieListActivity extends AppCompatActivity implements MovieAdapter.ItemListener {
 
+    private static final int UPDATE_LIST_REQUEST_CODE = 1;
     @BindView(R.id.movieRv)
     RecyclerView movieRv;
 
@@ -54,6 +58,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     @BindView(R.id.spinner)
     Spinner spinner;
 
+    @BindView(R.id.retryBtn)
+    Button retryBtn;
+
     @OnClick(R.id.retryBtn)
     void onRetryBtnClicked() {
         viewModel.getMovies();
@@ -70,7 +77,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         setContentView(R.layout.activity_movie_list);
         ButterKnife.bind(this);
         init(savedInstanceState);
-
     }
 
     private void init(Bundle savedInstanceState) {
@@ -79,15 +85,15 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         }
 
         viewModel = ViewModelProviders.
-                of(this, new MovieListViewModelFactory(DataManager.getInstance(getApplication())))
+                of(this, new MovieListViewModelFactory(getApplication(), DataManager.getInstance(getApplication())))
                 .get(MovieListViewModel.class);
 
         viewModel.getMovieList().observe(this, new Observer<List<Movie>>() {
             @Override
             public void onChanged(@Nullable List<Movie> movies) {
                 Log.d(TAG, "onChanged: getMovieList -> " + JsonUtils.convertModelToJsonString(movies));
-                if (movies != null)
-                    showMovies(movies);
+                if (movies != null) showMovies(movies);
+                else movieRv.setVisibility(View.GONE);
             }
         });
 
@@ -103,8 +109,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
             @Override
             public void onChanged(@Nullable Throwable throwable) {
                 Log.d(TAG, "onChanged: getError -> " + throwable);
-                if (throwable != null)
-                    showError(throwable);
+                if (throwable != null) showError(throwable);
+                else messageLayout.setVisibility(View.GONE);
+
             }
         });
 
@@ -190,13 +197,18 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     private void showError(Throwable throwable) {
         movieRv.setVisibility(View.GONE);
         messageLayout.setVisibility(View.VISIBLE);
+        if (throwable.getMessage() != null & throwable.getMessage().equals(NO_FAVORITES)) {
+            retryBtn.setVisibility(View.GONE);
+        } else {
+            retryBtn.setVisibility(View.VISIBLE);
+        }
         messageTv.setText(ErrorUtils.displayFriendlyErrorMessage(this, throwable));
     }
 
     @Override
     public void onItemClick(Movie movie) {
-        startActivity(new Intent(this, MovieDetailActivity.class)
-                .putExtra(MovieDetailActivity.EXTRA_MOVIE, Parcels.wrap(movie)));
+        startActivityForResult(new Intent(this, MovieDetailActivity.class)
+                .putExtra(MovieDetailActivity.EXTRA_MOVIE, Parcels.wrap(movie)), UPDATE_LIST_REQUEST_CODE);
     }
 
     @Override
@@ -204,5 +216,17 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         super.onSaveInstanceState(outState);
         Parcelable state = movieRv.getLayoutManager().onSaveInstanceState();
         outState.putParcelable(KEY_RECYCLERVIEW_STATE, state);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == UPDATE_LIST_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                if (viewModel.getMovieListType().equalsIgnoreCase(getString(R.string.favorite))) {
+                    viewModel.getMovies();
+                }
+            }
+        }
     }
 }

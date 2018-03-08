@@ -20,10 +20,12 @@
     <!--Movie List Type Values-->
     <string name="popular" translatable="false">popular</string>
     <string name="top_rated" translatable="false">top_rated</string>
+    <string name="favorite" translatable="false">favorite</string>
 
     <!--Movie List Type Options-->
     <string name="popular_option">Popular</string>
     <string name="top_rated_option">Top rated</string>
+    <string name="favorite_option">Favorite</string>
 
 
     <string name="movie_list_type_default">@string/popular</string>
@@ -39,5 +41,9 @@
     <string name="a11y_rating">Rating: <xliff:g id="rating">%1$.1f</xliff:g> over 10</string>
     <string name="a11y_overview">Overview: <xliff:g id="overview">%1$s</xliff:g></string>
     <string name="retry">Retry</string>
+
+    <!--ContentProvider-->
+    <string name="content_authority" translatable="false">com.figengungor.popularmovies</string>
+    <string name="no_favorites_found">You have no favorite movie yet.</string>
 
 </resources>

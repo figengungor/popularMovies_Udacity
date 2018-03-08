@@ -27,6 +27,12 @@
             android:label=""
             android:parentActivityName=".ui.movieList.MovieListActivity"
             android:theme="@style/AppTheme.ActionBar.Transparent"/>
+
+        <provider
+            android:name=".data.local.MovieProvider"
+            android:authorities="@string/content_authority"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="posterIv,releaseDateTv"
+            app:constraint_referenced_ids="posterIv,favoriteBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -136,6 +136,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/barrierVertical"
             tools:text="@sample/movies.json/results/overview" />
+
+        <ImageView
+            android:id="@+id/favoriteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/releaseDateTv"
+            app:srcCompat="@drawable/ic_star_border_black_24dp"
+            android:layout_marginRight="8dp" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
