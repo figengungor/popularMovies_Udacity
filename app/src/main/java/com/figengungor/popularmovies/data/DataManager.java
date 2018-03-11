@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.figengungor.popularmovies.data.local.PreferenceHelper;
 import com.figengungor.popularmovies.data.model.MovieListResponse;
+import com.figengungor.popularmovies.data.model.ReviewsResponse;
+import com.figengungor.popularmovies.data.model.VideosResponse;
 import com.figengungor.popularmovies.data.remote.TmdbCallback;
 import com.figengungor.popularmovies.data.remote.TmdbService;
 import com.figengungor.popularmovies.data.remote.TmdbServiceFactory;
@@ -36,11 +38,23 @@ public class DataManager {
         return call;
     }
 
-    public String getMovieListType(){
+    public Call getVideos(int movieId, TmdbCallback<VideosResponse> listener) {
+        Call<VideosResponse> call = tmdbService.getVideos(movieId);
+        call.enqueue(listener);
+        return call;
+    }
+
+    public Call getReviews(int moviedId, TmdbCallback<ReviewsResponse> listener) {
+        Call<ReviewsResponse> call = tmdbService.getReviews(moviedId);
+        call.enqueue(listener);
+        return call;
+    }
+
+    public String getMovieListType() {
         return preferenceHelper.getMovieListType();
     }
 
-    public void saveMovieListType(String movieListType){
+    public void saveMovieListType(String movieListType) {
         preferenceHelper.setMovieListType(movieListType);
     }
 }

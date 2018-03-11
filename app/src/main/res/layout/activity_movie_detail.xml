@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
@@ -34,8 +34,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/poster_content_description"
-            app:layout_constraintDimensionRatio="342:513"
             android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="342:513"
             app:layout_constraintEnd_toStartOf="@+id/guidelineCenterVertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/backdropIv"
@@ -128,6 +128,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
             android:fontFamily="@font/play_regular"
             android:textColor="@android:color/white"
             android:textSize="18sp"
@@ -142,12 +144,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:tint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/releaseDateTv"
-            app:srcCompat="@drawable/ic_star_border_black_24dp"
-            android:layout_marginRight="8dp" />
+            app:srcCompat="@drawable/ic_star_border_black_24dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/videosRv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overviewTv"
+            tools:listitem="@layout/item_video"
+            android:overScrollMode="never"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reviewsRv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/videosRv"
+            tools:listitem="@layout/item_review"
+            android:overScrollMode="never"/>
 
     </android.support.constraint.ConstraintLayout>
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

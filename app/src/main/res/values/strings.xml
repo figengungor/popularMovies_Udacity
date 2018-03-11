@@ -10,12 +10,14 @@
 
     <string name="backdrop_content_description">Movie backdrop image</string>
     <string name="poster_content_description">Movie poster image</string>
+    <string name="trailer_content_description">Trailer preview image</string>
 
     <!--Error messages-->
     <string name="time_out">Time out!</string>
     <string name="no_internet">No Internet!</string>
     <string name="no_data_found">No data found!</string>
     <string name="unexpected_error">Opsss. Unexpected error occurred.</string>
+    <string name="no_favorites_found">You have no favorite movie yet.</string>
 
     <!--Movie List Type Values-->
     <string name="popular" translatable="false">popular</string>
@@ -27,14 +29,14 @@
     <string name="top_rated_option">Top rated</string>
     <string name="favorite_option">Favorite</string>
 
-
     <string name="movie_list_type_default">@string/popular</string>
     <string name="movie_list_type_spinner">Movie list type spinner</string>
 
     <!--Movie Detail-->
     <!--https://stackoverflow.com/questions/24785305/android-getstring-xliff-format-float-double-->
     <string name="rating"><xliff:g id="rating">%1$.1f</xliff:g>/10</string>
-    
+    <string name="youtube_preview_url">https://i1.ytimg.com/vi/<xliff:g id="key">%1$s</xliff:g>/mqdefault.jpg</string>
+
     <!--Accessibility-->
     <string name="a11y_movie_title">Movie title: <xliff:g id="title">%1$s</xliff:g></string>
     <string name="a11y_release_date">Release date: <xliff:g id="release_date">%1$s</xliff:g></string>
@@ -44,6 +46,6 @@
 
     <!--ContentProvider-->
     <string name="content_authority" translatable="false">com.figengungor.popularmovies</string>
-    <string name="no_favorites_found">You have no favorite movie yet.</string>
+
 
 </resources>

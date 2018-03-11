@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground">
+
+    <ImageView
+        android:id="@+id/previewIv"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="320:180"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/placeholder_backdrop"
+        android:layout_marginLeft="8dp"
+        android:contentDescription="@string/trailer_content_description"/>
+
+    <View android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/previewIv"
+        app:layout_constraintTop_toTopOf="@+id/previewIv"
+        app:layout_constraintRight_toRightOf="@+id/previewIv"
+        app:layout_constraintLeft_toLeftOf="@+id/previewIv"
+        android:background="@color/colorTranslucent" />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/ic_play_arrow_black_24dp"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/previewIv"
+        app:layout_constraintTop_toTopOf="@+id/previewIv"
+        app:layout_constraintRight_toRightOf="@+id/previewIv"
+        app:layout_constraintLeft_toLeftOf="@+id/previewIv" />
+
+    <TextView
+        android:id="@+id/nameTv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/play_regular"
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/previewIv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/previewIv"
+        app:layout_constraintTop_toTopOf="@+id/previewIv"
+        tools:text="@sample/videos.json/results/name" />
+
+</android.support.constraint.ConstraintLayout>
