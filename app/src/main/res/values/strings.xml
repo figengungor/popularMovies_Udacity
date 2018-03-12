@@ -11,6 +11,8 @@
     <string name="backdrop_content_description">Movie backdrop image</string>
     <string name="poster_content_description">Movie poster image</string>
     <string name="trailer_content_description">Trailer preview image</string>
+    <string name="add_to_favorites_button_content_description">Add to favorites</string>
+    <string name="remove_from_favorites_button_content_description">Remove from favorites</string>
 
     <!--Error messages-->
     <string name="time_out">Time out!</string>
@@ -46,6 +48,8 @@
 
     <!--ContentProvider-->
     <string name="content_authority" translatable="false">com.figengungor.popularmovies</string>
+    <string name="trailers">Trailers</string>
+    <string name="reviews">Reviews</string>
 
 
 </resources>

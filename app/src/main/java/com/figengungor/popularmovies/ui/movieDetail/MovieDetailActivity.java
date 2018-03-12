@@ -190,8 +190,10 @@ public class MovieDetailActivity extends AppCompatActivity implements VideoListA
     private void showFavorite(Boolean isFavorite) {
         if (isFavorite) {
             favoriteBtn.setImageResource(R.drawable.ic_star_black_24dp);
+            favoriteBtn.setContentDescription(getString(R.string.remove_from_favorites_button_content_description));
         } else {
             favoriteBtn.setImageResource(R.drawable.ic_star_border_black_24dp);
+            favoriteBtn.setContentDescription(getString(R.string.add_to_favorites_button_content_description));
         }
     }
 
