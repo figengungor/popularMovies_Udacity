@@ -35,7 +35,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contentTv"
-        tools:text="@sample/reviews.json/results/author"
-        android:layout_marginRight="16dp" />
+        tools:text="@sample/reviews.json/results/author" />
 
 </android.support.constraint.ConstraintLayout>

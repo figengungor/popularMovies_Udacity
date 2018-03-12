@@ -19,7 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@drawable/placeholder_backdrop"
-        android:layout_marginLeft="8dp"
         android:contentDescription="@string/trailer_content_description"/>
 
     <View android:layout_width="0dp"
