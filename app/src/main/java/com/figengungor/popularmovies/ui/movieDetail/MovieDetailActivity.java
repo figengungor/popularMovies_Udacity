@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -91,7 +93,7 @@ public class MovieDetailActivity extends AppCompatActivity implements VideoListA
             }
         });
 
-        viewModel.getIsFavoriteChangedAskingBecauseGonnaUpdatePreviousActivityIfFavoriteIsListType().observe(this, new Observer<Boolean>() {
+        viewModel.getIsFavoriteChanged().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean isFavoriteChanged) {
                 if (isFavoriteChanged)
@@ -177,7 +179,7 @@ public class MovieDetailActivity extends AppCompatActivity implements VideoListA
         ImageUtils.loadImageUrl(posterPath, posterIv, ImageUtils.ImageType.POSTER);
         titleTv.setText(title);
         releaseDateTv.setText(friendlyReleaseDate);
-        ratingTv.setText(getString(R.string.rating, voteAverage));
+        setRating(getString(R.string.rating, voteAverage));
         overviewTv.setText(overview);
 
         //Accessibility setup
@@ -185,6 +187,14 @@ public class MovieDetailActivity extends AppCompatActivity implements VideoListA
         releaseDateTv.setContentDescription(getString(R.string.a11y_release_date, friendlyReleaseDate));
         ratingTv.setContentDescription(getString(R.string.a11y_rating, voteAverage));
         overviewTv.setContentDescription(overview);
+    }
+
+    private void setRating(String voteAverageStr) {
+        int end = voteAverageStr.length();
+        int start = end-3;
+        SpannableString ss1=  new SpannableString(voteAverageStr);
+        ss1.setSpan(new RelativeSizeSpan(0.5f), start, end, 0); // set size
+        ratingTv.setText(ss1);
     }
 
     private void showFavorite(Boolean isFavorite) {
@@ -212,4 +222,5 @@ public class MovieDetailActivity extends AppCompatActivity implements VideoListA
             startActivity(webIntent);
         }
     }
+
 }

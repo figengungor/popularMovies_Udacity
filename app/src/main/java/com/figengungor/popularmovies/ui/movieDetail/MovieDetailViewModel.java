@@ -28,7 +28,7 @@ public class MovieDetailViewModel extends AndroidViewModel {
 
     DataManager dataManager;
     MutableLiveData<Boolean> isFavorite;
-    MutableLiveData<Boolean> isFavoriteChangedAskingBecauseGonnaUpdatePreviousActivityIfFavoriteIsListType;
+    MutableLiveData<Boolean> isFavoriteChanged;
 
     MutableLiveData<List<Video>> videoList;
     MutableLiveData<List<Review>> reviewList;
@@ -38,8 +38,8 @@ public class MovieDetailViewModel extends AndroidViewModel {
         this.dataManager = dataManager;
 
         isFavorite = new MutableLiveData<>();
-        isFavoriteChangedAskingBecauseGonnaUpdatePreviousActivityIfFavoriteIsListType = new MutableLiveData<>();
-        isFavoriteChangedAskingBecauseGonnaUpdatePreviousActivityIfFavoriteIsListType.setValue(false);
+        isFavoriteChanged = new MutableLiveData<>();
+        isFavoriteChanged.setValue(false);
 
         videoList = new MutableLiveData<>();
         reviewList = new MutableLiveData<>();
@@ -47,7 +47,7 @@ public class MovieDetailViewModel extends AndroidViewModel {
 
     public void updateFavorite(Movie movie) {
         if (isFavorite.getValue() != null) {
-            isFavoriteChangedAskingBecauseGonnaUpdatePreviousActivityIfFavoriteIsListType.setValue(true);
+            isFavoriteChanged.setValue(true);
             if (isFavorite.getValue()) {
                 removeFavorite(movie);
             } else {
@@ -175,8 +175,8 @@ public class MovieDetailViewModel extends AndroidViewModel {
         return isFavorite;
     }
 
-    public MutableLiveData<Boolean> getIsFavoriteChangedAskingBecauseGonnaUpdatePreviousActivityIfFavoriteIsListType() {
-        return isFavoriteChangedAskingBecauseGonnaUpdatePreviousActivityIfFavoriteIsListType;
+    public MutableLiveData<Boolean> getIsFavoriteChanged() {
+        return isFavoriteChanged;
     }
 
     public MutableLiveData<List<Video>> getVideoList() {
