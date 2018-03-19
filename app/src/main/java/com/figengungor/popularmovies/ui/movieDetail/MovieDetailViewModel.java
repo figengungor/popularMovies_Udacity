@@ -12,13 +12,8 @@ import android.support.annotation.NonNull;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.local.MovieContract.FavoriteMovieEntry;
 import com.figengungor.popularmovies.data.model.Movie;
-import com.figengungor.popularmovies.data.model.Review;
-import com.figengungor.popularmovies.data.model.ReviewsResponse;
-import com.figengungor.popularmovies.data.model.Video;
-import com.figengungor.popularmovies.data.model.VideosResponse;
+import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.data.remote.TmdbCallback;
-
-import java.util.List;
 
 /**
  * Created by figengungor on 3/8/2018.
@@ -30,19 +25,15 @@ public class MovieDetailViewModel extends AndroidViewModel {
     MutableLiveData<Boolean> isFavorite;
     MutableLiveData<Boolean> isFavoriteChanged;
 
-    MutableLiveData<List<Video>> videoList;
-    MutableLiveData<List<Review>> reviewList;
+    MutableLiveData<MovieDetailResponse> movieDetailResponse;
 
     public MovieDetailViewModel(@NonNull Application application, DataManager dataManager) {
         super(application);
         this.dataManager = dataManager;
-
         isFavorite = new MutableLiveData<>();
         isFavoriteChanged = new MutableLiveData<>();
         isFavoriteChanged.setValue(false);
-
-        videoList = new MutableLiveData<>();
-        reviewList = new MutableLiveData<>();
+        movieDetailResponse = new MutableLiveData<>();
     }
 
     public void updateFavorite(Movie movie) {
@@ -143,25 +134,11 @@ public class MovieDetailViewModel extends AndroidViewModel {
     }
 
 
-    public void getVideos(int movieId){
-        dataManager.getVideos(movieId, new TmdbCallback<VideosResponse>() {
+    public void getMovieDetailResponse(int movieId){
+        dataManager.getMovieDetail(movieId, new TmdbCallback<MovieDetailResponse>() {
             @Override
-            public void onSuccess(VideosResponse response) {
-                videoList.setValue(response.getVideos());
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-
-            }
-        });
-    }
-
-    public void getReviews(int movieId){
-        dataManager.getReviews(movieId, new TmdbCallback<ReviewsResponse>() {
-            @Override
-            public void onSuccess(ReviewsResponse response) {
-                reviewList.setValue(response.getReviews());
+            public void onSuccess(MovieDetailResponse response) {
+                movieDetailResponse.setValue(response);
             }
 
             @Override
@@ -179,11 +156,7 @@ public class MovieDetailViewModel extends AndroidViewModel {
         return isFavoriteChanged;
     }
 
-    public MutableLiveData<List<Video>> getVideoList() {
-        return videoList;
-    }
-
-    public MutableLiveData<List<Review>> getReviewList() {
-        return reviewList;
+    public MutableLiveData<MovieDetailResponse> getMovieDetailResponse() {
+        return movieDetailResponse;
     }
 }

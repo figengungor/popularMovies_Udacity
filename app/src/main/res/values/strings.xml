@@ -50,6 +50,7 @@
     <string name="content_authority" translatable="false">com.figengungor.popularmovies</string>
     <string name="trailers">Trailers</string>
     <string name="reviews">Reviews</string>
+    <string name="videos_empty_message">No videos found.</string>
 
 
 </resources>

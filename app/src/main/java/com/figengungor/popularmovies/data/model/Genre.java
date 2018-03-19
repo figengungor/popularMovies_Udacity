@@ -1,15 +1,16 @@
 package com.figengungor.popularmovies.data.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class VideosResponse {
+public class Genre {
 
     @SerializedName("id")
+    @Expose
     private Integer id;
-    @SerializedName("results")
-    private List<Video> videos = null;
+    @SerializedName("name")
+    @Expose
+    private String name;
 
     public Integer getId() {
         return id;
@@ -19,12 +20,12 @@ public class VideosResponse {
         this.id = id;
     }
 
-    public List<Video> getVideos() {
-        return videos;
+    public String getName() {
+        return name;
     }
 
-    public void setVideos(List<Video> results) {
-        this.videos = results;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

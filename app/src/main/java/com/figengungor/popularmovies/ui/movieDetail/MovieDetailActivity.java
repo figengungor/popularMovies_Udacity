@@ -8,30 +8,30 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
-import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
-import com.figengungor.popularmovies.data.model.Review;
+import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.data.model.Video;
+import com.figengungor.popularmovies.ui.movieDetail.reviews.ReviewsLayout;
+import com.figengungor.popularmovies.ui.movieDetail.videos.VideosAdapter;
+import com.figengungor.popularmovies.ui.movieDetail.videos.VideosLayout;
 import com.figengungor.popularmovies.utils.DateUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
 
 import org.parceler.Parcels;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MovieDetailActivity extends AppCompatActivity implements VideoListAdapter.ItemListener {
+public class MovieDetailActivity extends AppCompatActivity implements VideosAdapter.ItemListener {
 
     public static final String EXTRA_MOVIE = "movie";
     private static final String TAG = MovieDetailActivity.class.getSimpleName();
@@ -59,11 +59,8 @@ public class MovieDetailActivity extends AppCompatActivity implements VideoListA
     @BindView(R.id.favoriteBtn)
     ImageView favoriteBtn;
 
-    @BindView(R.id.videosRv)
-    RecyclerView videosRv;
-
-    @BindView(R.id.reviewsRv)
-    RecyclerView reviewsRv;
+    @BindView(R.id.contentLl)
+    LinearLayout contentLl;
 
     @OnClick(R.id.favoriteBtn)
     void onFavoriteBtnClicked() {
@@ -101,60 +98,34 @@ public class MovieDetailActivity extends AppCompatActivity implements VideoListA
             }
         });
 
-        viewModel.getVideoList().observe(this, new Observer<List<Video>>() {
+        viewModel.getMovieDetailResponse().observe(this, new Observer<MovieDetailResponse>() {
             @Override
-            public void onChanged(@Nullable List<Video> videos) {
-                if (videos != null)
-                    showVideos(videos);
-            }
-        });
-
-        viewModel.getReviewList().observe(this, new Observer<List<Review>>() {
-            @Override
-            public void onChanged(@Nullable List<Review> reviews) {
-                if (reviews != null) {
-                    showReviews(reviews);
-                }
+            public void onChanged(@Nullable MovieDetailResponse movieDetailResponse) {
+                showMovieDetail(movieDetailResponse);
             }
         });
 
         setupUI();
     }
 
+    private void showMovieDetail(MovieDetailResponse movieDetailResponse) {
+        //VIDEOS
+        contentLl.addView(new VideosLayout(this, movieDetailResponse.getVideos()));
 
-    private void showVideos(List<Video> videos) {
-        VideoListAdapter adapter = new VideoListAdapter(videos);
-        adapter.setItemListener(this);
-        videosRv.setAdapter(adapter);
-        videosRv.setNestedScrollingEnabled(false);
+        //REVIEWS
+        contentLl.addView(new ReviewsLayout(this, movieDetailResponse.getReviews()));
     }
-
-    private void showReviews(List<Review> reviews) {
-        ReviewListAdapter adapter = new ReviewListAdapter(reviews);
-        reviewsRv.setAdapter(adapter);
-        reviewsRv.setNestedScrollingEnabled(false);
-    }
-
 
     private void setupUI() {
         setupToolbar();
         setupContent();
         checkFavorite();
-        loadVideos();
-        loadReviews();
+        loadMovieDetail();
     }
 
-    private void loadVideos() {
-        if (viewModel.getVideoList().getValue() == null) {
-            viewModel.getVideos(movie.getId());
-            Log.d(TAG, "loadVideos: fetch videos");
-        }
-    }
-
-    private void loadReviews() {
-        if (viewModel.getReviewList().getValue() == null) {
-            viewModel.getReviews(movie.getId());
-            Log.d(TAG, "loadReviews: fetch reviews");
+    private void loadMovieDetail() {
+        if (viewModel.getMovieDetailResponse().getValue() == null) {
+            viewModel.getMovieDetailResponse(movie.getId());
         }
     }
 
@@ -191,8 +162,8 @@ public class MovieDetailActivity extends AppCompatActivity implements VideoListA
 
     private void setRating(String voteAverageStr) {
         int end = voteAverageStr.length();
-        int start = end-3;
-        SpannableString ss1=  new SpannableString(voteAverageStr);
+        int start = end - 3;
+        SpannableString ss1 = new SpannableString(voteAverageStr);
         ss1.setSpan(new RelativeSizeSpan(0.5f), start, end, 0); // set size
         ratingTv.setText(ss1);
     }

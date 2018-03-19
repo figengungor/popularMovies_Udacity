@@ -1,4 +1,4 @@
-package com.figengungor.popularmovies.ui.movieDetail;
+package com.figengungor.popularmovies.ui.movieDetail.reviews;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,13 +15,13 @@ import butterknife.ButterKnife;
  * Created by figengungor on 3/11/2018.
  */
 
-public class ReviewListAdapter extends
-        RecyclerView.Adapter<ReviewListAdapter.VideoViewHolder> {
+public class ReviewsAdapter extends
+        RecyclerView.Adapter<ReviewsAdapter.VideoViewHolder> {
 
     private List<Review> items;
     private ItemListener itemListener;
 
-    public ReviewListAdapter(List<Review> items) {
+    public ReviewsAdapter(List<Review> items) {
         this.items = items;
     }
 

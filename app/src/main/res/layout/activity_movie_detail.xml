@@ -148,91 +148,15 @@
             app:srcCompat="@drawable/ic_star_border_black_24dp" />
 
 
-        <TextView
-            android:id="@+id/trailersHeaderTv"
+        <LinearLayout
+            android:id="@+id/contentLl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:orientation="vertical"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/play_bold"
-            android:text="@string/trailers"
-            android:textColor="@color/white"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/overviewTv" />
-
-        <View
-            android:id="@+id/trailersDivider"
-            android:layout_width="0dp"
-            android:layout_height="1px"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trailersHeaderTv" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/videosRv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:overScrollMode="never"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trailersDivider"
-            tools:listitem="@layout/item_video" />
-
-        <TextView
-            android:id="@+id/reviewsHeaderTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/play_bold"
-            android:text="@string/reviews"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/videosRv" />
-
-        <View
-            android:id="@+id/reviewsDivider"
-            android:layout_width="0dp"
-            android:layout_height="1px"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reviewsHeaderTv" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/reviewsRv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:overScrollMode="never"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reviewsDivider"
-            tools:listitem="@layout/item_review" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>

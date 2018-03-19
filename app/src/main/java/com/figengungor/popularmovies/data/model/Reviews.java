@@ -1,29 +1,24 @@
 package com.figengungor.popularmovies.data.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ReviewsResponse {
+public class Reviews {
 
-    @SerializedName("id")
-    private Integer id;
     @SerializedName("page")
+    @Expose
     private Integer page;
     @SerializedName("results")
+    @Expose
     private List<Review> reviews = null;
     @SerializedName("total_pages")
+    @Expose
     private Integer totalPages;
     @SerializedName("total_results")
+    @Expose
     private Integer totalResults;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getPage() {
         return page;
