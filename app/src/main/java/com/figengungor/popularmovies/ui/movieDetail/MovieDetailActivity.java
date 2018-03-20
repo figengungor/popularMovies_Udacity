@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
@@ -41,8 +43,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.figengungor.popularmovies.utils.ErrorUtils.NO_FAVORITES;
-
 public class MovieDetailActivity extends AppCompatActivity implements VideosAdapter.ItemListener {
 
     public static final String EXTRA_MOVIE = "movie";
@@ -69,7 +69,7 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
     TextView overviewTv;
 
     @BindView(R.id.favoriteBtn)
-    ImageView favoriteBtn;
+    FloatingActionButton favoriteBtn;
 
     @BindView(R.id.contentLl)
     LinearLayout contentLl;
@@ -234,10 +234,10 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
 
     private void showFavorite(Boolean isFavorite) {
         if (isFavorite) {
-            favoriteBtn.setImageResource(R.drawable.ic_star_black_24dp);
+            favoriteBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_black_24dp));
             favoriteBtn.setContentDescription(getString(R.string.remove_from_favorites_button_content_description));
         } else {
-            favoriteBtn.setImageResource(R.drawable.ic_star_border_black_24dp);
+            favoriteBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_border_black_24dp));
             favoriteBtn.setContentDescription(getString(R.string.add_to_favorites_button_content_description));
         }
     }

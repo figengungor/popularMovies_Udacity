@@ -31,6 +31,7 @@
         android:maxLines="2"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:fontFamily="@font/play_regular"
         android:textColor="@android:color/white"
         tools:text="Name" />
 

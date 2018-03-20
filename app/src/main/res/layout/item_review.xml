@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:trimLength="2"
+        app:trimMode="trimModeLength"
+        app:trimLength="100"
         android:textSize="15sp"
         android:fontFamily="@font/play_regular"
         tools:text="@sample/reviews.json/results/content"/>

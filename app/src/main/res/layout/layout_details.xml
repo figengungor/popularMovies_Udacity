@@ -44,7 +44,8 @@
         android:text="@string/release_date"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        android:fontFamily="@font/play_bold"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/releaseDateTv"
@@ -55,7 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelBarrier"
         app:layout_constraintTop_toTopOf="@id/releaseDateLabel"
-        tools:text="April 27, 2018" />
+        tools:text="April 27, 2018"
+        android:fontFamily="@font/play_regular"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/originalTitleLabel"
@@ -65,7 +67,8 @@
         android:text="@string/original_title"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/releaseDateLabel" />
+        app:layout_constraintTop_toBottomOf="@id/releaseDateLabel"
+        android:fontFamily="@font/play_bold"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/originalTitleTv"
@@ -76,7 +79,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelBarrier"
         app:layout_constraintTop_toTopOf="@id/originalTitleLabel"
-        tools:text="Black Panther" />
+        tools:text="Black Panther"
+        android:fontFamily="@font/play_regular"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/originalLanguageLabel"
@@ -86,7 +90,8 @@
         android:text="@string/original_language"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/originalTitleLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/originalTitleLabel"
+        android:fontFamily="@font/play_bold"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/originalLanguageTv"
@@ -97,7 +102,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelBarrier"
         app:layout_constraintTop_toTopOf="@+id/originalLanguageLabel"
-        tools:text="en" />
+        tools:text="en"
+        android:fontFamily="@font/play_regular"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/budgetLabel"
@@ -107,7 +113,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/originalLanguageLabel"
         android:text="@string/budget"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:fontFamily="@font/play_bold"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/budgetTv"
@@ -118,7 +125,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelBarrier"
         app:layout_constraintTop_toTopOf="@+id/budgetLabel"
-        tools:text="200000000" />
+        tools:text="200000000"
+        android:fontFamily="@font/play_regular"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/revenueLabel"
@@ -128,7 +136,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budgetLabel"
         android:text="@string/revenue"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:fontFamily="@font/play_bold"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/revenueTv"
@@ -139,7 +148,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelBarrier"
         app:layout_constraintTop_toTopOf="@+id/revenueLabel"
-        tools:text="1182500528" />
+        tools:text="1182500528"
+        android:fontFamily="@font/play_regular"/>
 
     <android.support.constraint.Barrier
         android:id="@+id/labelBarrier"

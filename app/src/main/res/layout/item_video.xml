@@ -50,7 +50,7 @@
         android:fontFamily="@font/play_regular"
         android:gravity="center"
         android:maxLines="1"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         tools:text="@sample/videos.json/results/name" />
 
 </RelativeLayout>

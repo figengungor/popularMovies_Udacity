@@ -32,7 +32,8 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:textColor="@android:color/white"
-        tools:text="Name" />
+        tools:text="Name"
+        android:fontFamily="@font/play_regular"/>
 
     <TextView
         android:id="@+id/roleTv"
@@ -48,6 +49,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:textColor="@android:color/white"
-        tools:text="Role" />
+        tools:text="Role"
+        android:fontFamily="@font/play_regular"/>
 
 </RelativeLayout>
