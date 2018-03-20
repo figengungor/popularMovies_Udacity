@@ -25,6 +25,7 @@ import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.data.model.Video;
 import com.figengungor.popularmovies.ui.movieDetail.cast.CastLayout;
 import com.figengungor.popularmovies.ui.movieDetail.details.DetailsLayout;
+import com.figengungor.popularmovies.ui.movieDetail.genres.GenresLayout;
 import com.figengungor.popularmovies.ui.movieDetail.reviews.ReviewsLayout;
 import com.figengungor.popularmovies.ui.movieDetail.similarMovies.SimilarMoviesLayout;
 import com.figengungor.popularmovies.ui.movieDetail.videos.VideosAdapter;
@@ -159,6 +160,9 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
 
         contentLl.setVisibility(View.VISIBLE);
         messageLayout.setVisibility(View.GONE);
+
+        //GENRES
+        contentLl.addView(new GenresLayout(this, movieDetailResponse.getGenres()));
 
         //VIDEOS
         contentLl.addView(new VideosLayout(this, movieDetailResponse.getVideos()));
