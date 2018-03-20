@@ -26,6 +26,8 @@ public class MovieDetailViewModel extends AndroidViewModel {
     MutableLiveData<Boolean> isFavoriteChanged;
 
     MutableLiveData<MovieDetailResponse> movieDetailResponse;
+    MutableLiveData<Boolean> isLoading;
+    MutableLiveData<Throwable> error;
 
     public MovieDetailViewModel(@NonNull Application application, DataManager dataManager) {
         super(application);
@@ -34,6 +36,8 @@ public class MovieDetailViewModel extends AndroidViewModel {
         isFavoriteChanged = new MutableLiveData<>();
         isFavoriteChanged.setValue(false);
         movieDetailResponse = new MutableLiveData<>();
+        isLoading = new MutableLiveData<>();
+        error = new MutableLiveData<>();
     }
 
     public void updateFavorite(Movie movie) {
@@ -135,15 +139,21 @@ public class MovieDetailViewModel extends AndroidViewModel {
 
 
     public void getMovieDetailResponse(int movieId){
+        isLoading.setValue(true);
+        movieDetailResponse.setValue(null);
+        error.setValue(null);
         dataManager.getMovieDetail(movieId, new TmdbCallback<MovieDetailResponse>() {
             @Override
             public void onSuccess(MovieDetailResponse response) {
+                isLoading.setValue(false);
                 movieDetailResponse.setValue(response);
+                error.setValue(null);
             }
 
             @Override
             public void onFail(Throwable throwable) {
-
+                isLoading.setValue(false);
+                error.setValue(throwable);
             }
         });
     }
@@ -158,5 +168,13 @@ public class MovieDetailViewModel extends AndroidViewModel {
 
     public MutableLiveData<MovieDetailResponse> getMovieDetailResponse() {
         return movieDetailResponse;
+    }
+
+    public MutableLiveData<Boolean> getIsLoading() {
+        return isLoading;
+    }
+
+    public MutableLiveData<Throwable> getError() {
+        return error;
     }
 }

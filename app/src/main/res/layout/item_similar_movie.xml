@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp">
+
+    <com.figengungor.popularmovies.ui.custom.AspectRatioImageView
+        android:id="@+id/posterIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        app:aspectRatio="1.5027"
+        app:aspectRatioEnabled="true"
+        tools:src="@drawable/placeholder_poster" />
+
+    <TextView
+        android:id="@+id/nameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/posterIv"
+        android:layout_alignLeft="@+id/posterIv"
+        android:layout_alignRight="@+id/posterIv"
+        android:layout_centerHorizontal="true"
+        android:background="@color/headerTransparent"
+        android:gravity="center"
+        android:maxLines="2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="@android:color/white"
+        tools:text="Name" />
+
+</RelativeLayout>

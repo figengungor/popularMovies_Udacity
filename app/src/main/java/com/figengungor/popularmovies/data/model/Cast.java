@@ -28,7 +28,7 @@ public class Cast {
     private Integer order;
     @SerializedName("profile_path")
     @Expose
-    private Object profilePath;
+    private String profilePath;
     @SerializedName("department")
     @Expose
     private String department;
@@ -92,11 +92,11 @@ public class Cast {
         this.order = order;
     }
 
-    public Object getProfilePath() {
+    public String getProfilePath() {
         return profilePath;
     }
 
-    public void setProfilePath(Object profilePath) {
+    public void setProfilePath(String profilePath) {
         this.profilePath = profilePath;
     }
 

@@ -3,5 +3,8 @@
     <integer name="spanCount">2</integer>
     <integer name="movie_detail_videos_recycler_view_visible_item_count">2</integer>
     <integer name="movie_detail_horizontal_recycler_view_item_margin">8</integer>
-    <integer name="series_detail_horizontal_recycler_view_item_peek_width">32</integer>
+    <integer name="movie_detail_horizontal_recycler_view_item_peek_width">32</integer>
+
+    <integer name="movie_detail_similar_recycler_view_visible_item_count">3</integer>
+
 </resources>

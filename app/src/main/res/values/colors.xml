@@ -7,4 +7,5 @@
     <color name="colorBackground">#1A1A1C</color>
     <color name="white">#ffffff</color>
     <color name="colorTranslucent">#30000000</color>
+    <color name="headerTransparent">#70000000</color>
 </resources>

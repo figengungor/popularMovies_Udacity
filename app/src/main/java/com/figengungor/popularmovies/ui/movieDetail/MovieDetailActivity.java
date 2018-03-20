@@ -10,8 +10,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.figengungor.popularmovies.R;
@@ -19,17 +23,24 @@ import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
 import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.data.model.Video;
+import com.figengungor.popularmovies.ui.movieDetail.cast.CastLayout;
+import com.figengungor.popularmovies.ui.movieDetail.details.DetailsLayout;
 import com.figengungor.popularmovies.ui.movieDetail.reviews.ReviewsLayout;
+import com.figengungor.popularmovies.ui.movieDetail.similarMovies.SimilarMoviesLayout;
 import com.figengungor.popularmovies.ui.movieDetail.videos.VideosAdapter;
 import com.figengungor.popularmovies.ui.movieDetail.videos.VideosLayout;
 import com.figengungor.popularmovies.utils.DateUtils;
+import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.figengungor.popularmovies.utils.ErrorUtils.NO_FAVORITES;
 
 public class MovieDetailActivity extends AppCompatActivity implements VideosAdapter.ItemListener {
 
@@ -62,9 +73,26 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
     @BindView(R.id.contentLl)
     LinearLayout contentLl;
 
+    @BindView(R.id.messageLayout)
+    ScrollView messageLayout;
+
+    @BindView(R.id.messageTv)
+    TextView messageTv;
+
+    @BindView(R.id.loadingPw)
+    ProgressWheel loadingPw;
+
     @OnClick(R.id.favoriteBtn)
     void onFavoriteBtnClicked() {
         viewModel.updateFavorite(movie);
+    }
+
+    @BindView(R.id.retryBtn)
+    Button retryBtn;
+
+    @OnClick(R.id.retryBtn)
+    void onRetryBtnClicked() {
+        viewModel.getMovieDetailResponse(movie.getId());
     }
 
     @Override
@@ -101,7 +129,26 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
         viewModel.getMovieDetailResponse().observe(this, new Observer<MovieDetailResponse>() {
             @Override
             public void onChanged(@Nullable MovieDetailResponse movieDetailResponse) {
-                showMovieDetail(movieDetailResponse);
+                if(movieDetailResponse!=null) showMovieDetail(movieDetailResponse);
+                else contentLl.setVisibility(View.GONE);
+            }
+        });
+
+        viewModel.getIsLoading().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isLoading) {
+                Log.d(TAG, "onChanged: getIsLoading -> " + isLoading);
+                showLoadingIndicator(isLoading);
+            }
+        });
+
+        viewModel.getError().observe(this, new Observer<Throwable>() {
+            @Override
+            public void onChanged(@Nullable Throwable throwable) {
+                Log.d(TAG, "onChanged: getError -> " + throwable);
+                if (throwable != null) showError(throwable);
+                else messageLayout.setVisibility(View.GONE);
+
             }
         });
 
@@ -109,11 +156,24 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
     }
 
     private void showMovieDetail(MovieDetailResponse movieDetailResponse) {
+
+        contentLl.setVisibility(View.VISIBLE);
+        messageLayout.setVisibility(View.GONE);
+
         //VIDEOS
         contentLl.addView(new VideosLayout(this, movieDetailResponse.getVideos()));
 
         //REVIEWS
         contentLl.addView(new ReviewsLayout(this, movieDetailResponse.getReviews()));
+
+        //CAST
+        contentLl.addView(new CastLayout(this, movieDetailResponse.getCredits()));
+
+        //SIMILAR MOVIES
+        contentLl.addView(new SimilarMoviesLayout(this, movieDetailResponse.getSimilar()));
+
+        //DETAILS
+        contentLl.addView(new DetailsLayout(this, movieDetailResponse));
     }
 
     private void setupUI() {
@@ -192,6 +252,21 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
         } catch (ActivityNotFoundException ex) {
             startActivity(webIntent);
         }
+    }
+
+    private void showLoadingIndicator(Boolean isLoading) {
+        if (isLoading) {
+            loadingPw.setVisibility(View.VISIBLE);
+        } else {
+            loadingPw.setVisibility(View.GONE);
+        }
+    }
+
+    private void showError(Throwable throwable) {
+        contentLl.setVisibility(View.GONE);
+        messageLayout.setVisibility(View.VISIBLE);
+        retryBtn.setVisibility(View.VISIBLE);
+        messageTv.setText(ErrorUtils.displayFriendlyErrorMessage(this, throwable));
     }
 
 }

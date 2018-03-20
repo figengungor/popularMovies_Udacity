@@ -48,9 +48,20 @@
 
     <!--ContentProvider-->
     <string name="content_authority" translatable="false">com.figengungor.popularmovies</string>
-    <string name="trailers">Trailers</string>
+    <string name="videos">Videos</string>
     <string name="reviews">Reviews</string>
     <string name="videos_empty_message">No videos found.</string>
+    <string name="reviews_empty_message">No reviews found.</string>
+    <string name="similar_movies">Similar Movies</string>
+    <string name="similar_movies_empty_message">No similar movies found.</string>
+    <string name="cast">Cast</string>
+    <string name="cast_empty_message">No cast found.</string>
+    <string name="details">Details</string>
+    <string name="release_date">Release Date</string>
+    <string name="original_title">Original Title</string>
+    <string name="original_language">Original Language</string>
+    <string name="revenue">Revenue</string>
+    <string name="budget">Budget</string>
 
 
 </resources>

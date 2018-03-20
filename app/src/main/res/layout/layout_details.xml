@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    tools:padding="16dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:id="@+id/detailsTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/play_bold"
+        android:text="@string/details"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsTv" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/releaseDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        android:layout_marginTop="8dp"
+        android:text="@string/release_date"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/releaseDateTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
+        app:layout_constraintTop_toTopOf="@id/releaseDateLabel"
+        tools:text="April 27, 2018" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/originalTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        android:text="@string/original_title"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/releaseDateLabel" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/originalTitleTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
+        app:layout_constraintTop_toTopOf="@id/originalTitleLabel"
+        tools:text="Black Panther" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/originalLanguageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        android:text="@string/original_language"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/originalTitleLabel" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/originalLanguageTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
+        app:layout_constraintTop_toTopOf="@+id/originalLanguageLabel"
+        tools:text="en" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/budgetLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/originalLanguageLabel"
+        android:text="@string/budget"
+        android:textColor="@color/white" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/budgetTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
+        app:layout_constraintTop_toTopOf="@+id/budgetLabel"
+        tools:text="200000000" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/revenueLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budgetLabel"
+        android:text="@string/revenue"
+        android:textColor="@color/white" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/revenueTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
+        app:layout_constraintTop_toTopOf="@+id/revenueLabel"
+        tools:text="1182500528" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/labelBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="releaseDateLabel,originalTitleLabel, originalLanguageLabel,budgetLabel,revenueLabel" />
+
+
+</android.support.constraint.ConstraintLayout>
