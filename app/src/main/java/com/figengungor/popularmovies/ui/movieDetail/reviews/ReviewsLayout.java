@@ -30,13 +30,13 @@ public class ReviewsLayout extends ConstraintLayout {
 
     @OnClick(R.id.seeMoreTv)
     void onSeeMoreClicked() {
-        if (reviewsLayoutListener != null)
-            reviewsLayoutListener.onSeeMoreReviewsClicked();
+        if (reviewsListener != null)
+            reviewsListener.onSeeMoreReviewsClicked();
     }
 
-    ReviewsLayoutListener reviewsLayoutListener;
+    ReviewsListener reviewsListener;
 
-    public interface ReviewsLayoutListener {
+    public interface ReviewsListener {
         void onSeeMoreReviewsClicked();
     }
 
@@ -44,9 +44,9 @@ public class ReviewsLayout extends ConstraintLayout {
         super(context);
     }
 
-    public ReviewsLayout(Context context, ReviewsLayoutListener reviewsLayoutListener, Reviews reviews) {
+    public ReviewsLayout(Context context, ReviewsListener reviewsListener, Reviews reviews) {
         super(context);
-        init(context, reviewsLayoutListener);
+        init(context, reviewsListener);
         if (reviews.getReviews() == null || reviews.getReviews().size() == 0) {
             emptyMessageTv.setVisibility(View.VISIBLE);
             seeMoreTv.setVisibility(View.GONE);
@@ -65,8 +65,8 @@ public class ReviewsLayout extends ConstraintLayout {
         }
     }
 
-    private void init(Context context, ReviewsLayoutListener reviewsLayoutListener) {
-        this.reviewsLayoutListener = reviewsLayoutListener;
+    private void init(Context context, ReviewsListener reviewsListener) {
+        this.reviewsListener = reviewsListener;
         View view = inflate(context, R.layout.layout_reviews, this);
         ButterKnife.bind(view);
     }

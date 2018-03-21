@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
@@ -36,14 +37,16 @@ import com.figengungor.popularmovies.utils.DateUtils;
 import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
 import com.pnikosis.materialishprogress.ProgressWheel;
+
 import org.parceler.Parcels;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MovieDetailActivity extends AppCompatActivity implements
         VideosAdapter.ItemListener,
-        ReviewsLayout.ReviewsLayoutListener {
+        ReviewsLayout.ReviewsListener{
 
     public static final String EXTRA_MOVIE = "movie";
     private static final String TAG = MovieDetailActivity.class.getSimpleName();
@@ -165,7 +168,7 @@ public class MovieDetailActivity extends AppCompatActivity implements
         contentLl.addView(new GenresLayout(this, movieDetailResponse.getGenres()));
 
         //VIDEOS
-        contentLl.addView(new VideosLayout(this, movieDetailResponse.getVideos()));
+        contentLl.addView(new VideosLayout(this, this, movieDetailResponse.getVideos()));
 
         //REVIEWS
         contentLl.addView(new ReviewsLayout(this, this, movieDetailResponse.getReviews()));
@@ -248,13 +251,11 @@ public class MovieDetailActivity extends AppCompatActivity implements
     }
 
     public void watchYoutubeVideo(String id) {
-        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
-        Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://www.youtube.com/watch?v=" + id));
-        try {
-            startActivity(appIntent);
-        } catch (ActivityNotFoundException ex) {
-            startActivity(webIntent);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
+        String title = getResources().getString(R.string.youtube_video_choser_title);
+        Intent chooser = Intent.createChooser(intent, title);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(chooser);
         }
     }
 

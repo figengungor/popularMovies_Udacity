@@ -30,7 +30,7 @@ public class VideosLayout extends LinearLayout {
         init(context);
     }
 
-    public VideosLayout(Context context, Videos videos) {
+    public VideosLayout(Context context, VideosAdapter.ItemListener itemListener, Videos videos) {
         super(context);
         init(context);
         if (videos.getVideos() == null || videos.getVideos().size() == 0){
@@ -38,6 +38,7 @@ public class VideosLayout extends LinearLayout {
         } else {
             emptyMessageTv.setVisibility(View.GONE);
             VideosAdapter videosAdapter = new VideosAdapter(videos.getVideos(), context);
+            videosAdapter.setItemListener(itemListener);
             videosRv.setAdapter(videosAdapter);
             videosRv.setNestedScrollingEnabled(false);
         }
