@@ -29,6 +29,8 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -144,10 +146,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     }
 
     private void setupSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+      /*  ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.movie_list_type_options, R.layout.item_spinner_movie_list_type);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
+        String[] movieListTypeOptionsArray = getResources().getStringArray(R.array.movie_list_type_options);
+        ArrayList<String> movieListTypeOptions = new ArrayList<>(Arrays.asList(movieListTypeOptionsArray));
+        MovieListTypeAdapter adapter = new MovieListTypeAdapter(this, movieListTypeOptions);
 
         spinner.setAdapter(adapter);
 
