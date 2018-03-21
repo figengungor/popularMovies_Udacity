@@ -64,6 +64,7 @@
     <string name="budget">Budget</string>
     <string name="genres">Genres</string>
     <string name="genres_empty_message">No genres found.</string>
+    <string name="see_more">See More</string>
 
 
 </resources>

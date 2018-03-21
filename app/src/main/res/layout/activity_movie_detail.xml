@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="posterIv"
+            app:constraint_referenced_ids="posterIv,releaseDateTv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 

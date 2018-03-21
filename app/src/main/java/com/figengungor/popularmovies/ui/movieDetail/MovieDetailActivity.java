@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
@@ -28,6 +27,7 @@ import com.figengungor.popularmovies.data.model.Video;
 import com.figengungor.popularmovies.ui.movieDetail.cast.CastLayout;
 import com.figengungor.popularmovies.ui.movieDetail.details.DetailsLayout;
 import com.figengungor.popularmovies.ui.movieDetail.genres.GenresLayout;
+import com.figengungor.popularmovies.ui.movieDetail.reviews.ReviewsActivity;
 import com.figengungor.popularmovies.ui.movieDetail.reviews.ReviewsLayout;
 import com.figengungor.popularmovies.ui.movieDetail.similarMovies.SimilarMoviesLayout;
 import com.figengungor.popularmovies.ui.movieDetail.videos.VideosAdapter;
@@ -36,14 +36,14 @@ import com.figengungor.popularmovies.utils.DateUtils;
 import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
 import com.pnikosis.materialishprogress.ProgressWheel;
-
 import org.parceler.Parcels;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MovieDetailActivity extends AppCompatActivity implements VideosAdapter.ItemListener {
+public class MovieDetailActivity extends AppCompatActivity implements
+        VideosAdapter.ItemListener,
+        ReviewsLayout.ReviewsLayoutListener {
 
     public static final String EXTRA_MOVIE = "movie";
     private static final String TAG = MovieDetailActivity.class.getSimpleName();
@@ -130,7 +130,7 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
         viewModel.getMovieDetailResponse().observe(this, new Observer<MovieDetailResponse>() {
             @Override
             public void onChanged(@Nullable MovieDetailResponse movieDetailResponse) {
-                if(movieDetailResponse!=null) showMovieDetail(movieDetailResponse);
+                if (movieDetailResponse != null) showMovieDetail(movieDetailResponse);
                 else contentLl.setVisibility(View.GONE);
             }
         });
@@ -168,7 +168,7 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
         contentLl.addView(new VideosLayout(this, movieDetailResponse.getVideos()));
 
         //REVIEWS
-        contentLl.addView(new ReviewsLayout(this, movieDetailResponse.getReviews()));
+        contentLl.addView(new ReviewsLayout(this, this, movieDetailResponse.getReviews()));
 
         //CAST
         contentLl.addView(new CastLayout(this, movieDetailResponse.getCredits()));
@@ -273,4 +273,9 @@ public class MovieDetailActivity extends AppCompatActivity implements VideosAdap
         messageTv.setText(ErrorUtils.displayFriendlyErrorMessage(this, throwable));
     }
 
+    @Override
+    public void onSeeMoreReviewsClicked() {
+        startActivity(new Intent(this, ReviewsActivity.class)
+                .putExtra(ReviewsActivity.EXTRA_REVIEWS, Parcels.wrap(viewModel.getMovieDetailResponse().getValue().getReviews().getReviews())));
+    }
 }
