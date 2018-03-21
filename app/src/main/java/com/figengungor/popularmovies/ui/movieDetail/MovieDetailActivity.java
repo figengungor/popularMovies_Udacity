@@ -22,9 +22,13 @@ import android.widget.TextView;
 
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
+import com.figengungor.popularmovies.data.model.Cast;
+import com.figengungor.popularmovies.data.model.CastDetail;
 import com.figengungor.popularmovies.data.model.Movie;
 import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.data.model.Video;
+import com.figengungor.popularmovies.ui.castDetail.CastDetailActivity;
+import com.figengungor.popularmovies.ui.movieDetail.cast.CastAdapter;
 import com.figengungor.popularmovies.ui.movieDetail.cast.CastLayout;
 import com.figengungor.popularmovies.ui.movieDetail.details.DetailsLayout;
 import com.figengungor.popularmovies.ui.movieDetail.genres.GenresLayout;
@@ -46,7 +50,8 @@ import butterknife.OnClick;
 
 public class MovieDetailActivity extends AppCompatActivity implements
         VideosAdapter.ItemListener,
-        ReviewsLayout.ReviewsListener{
+        CastAdapter.ItemListener,
+        ReviewsLayout.ReviewsListener {
 
     public static final String EXTRA_MOVIE = "movie";
     private static final String TAG = MovieDetailActivity.class.getSimpleName();
@@ -174,7 +179,7 @@ public class MovieDetailActivity extends AppCompatActivity implements
         contentLl.addView(new ReviewsLayout(this, this, movieDetailResponse.getReviews()));
 
         //CAST
-        contentLl.addView(new CastLayout(this, movieDetailResponse.getCredits()));
+        contentLl.addView(new CastLayout(this, this, movieDetailResponse.getCredits()));
 
         //SIMILAR MOVIES
         contentLl.addView(new SimilarMoviesLayout(this, movieDetailResponse.getSimilar()));
@@ -245,11 +250,6 @@ public class MovieDetailActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public void onItemClicked(Video item) {
-        watchYoutubeVideo(item.getKey());
-    }
-
     public void watchYoutubeVideo(String id) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
         String title = getResources().getString(R.string.youtube_video_choser_title);
@@ -278,5 +278,16 @@ public class MovieDetailActivity extends AppCompatActivity implements
     public void onSeeMoreReviewsClicked() {
         startActivity(new Intent(this, ReviewsActivity.class)
                 .putExtra(ReviewsActivity.EXTRA_REVIEWS, Parcels.wrap(viewModel.getMovieDetailResponse().getValue().getReviews().getReviews())));
+    }
+
+    @Override
+    public void onItemClicked(Video item) {
+        watchYoutubeVideo(item.getKey());
+    }
+
+    @Override
+    public void onItemClicked(Cast item) {
+        startActivity(new Intent(this, CastDetailActivity.class)
+        .putExtra(CastDetailActivity.EXTRA_PERSON_ID, Parcels.wrap(item)));
     }
 }

@@ -31,7 +31,7 @@ public class CastLayout extends LinearLayout {
         init(context);
     }
 
-    public CastLayout(Context context, Credits credits) {
+    public CastLayout(Context context, CastAdapter.ItemListener itemListener, Credits credits) {
         super(context);
         init(context);
         if (credits.getCast() == null || credits.getCast().size() == 0){
@@ -39,6 +39,7 @@ public class CastLayout extends LinearLayout {
         } else {
             emptyMessageTv.setVisibility(View.GONE);
             CastAdapter adapter = new CastAdapter(credits.getCast(), context);
+            adapter.setItemListener(itemListener);
             castRv.setAdapter(adapter);
             castRv.setNestedScrollingEnabled(false);
         }

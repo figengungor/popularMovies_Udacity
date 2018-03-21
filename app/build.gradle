@@ -33,6 +33,7 @@ ext {
     parcelerVersion = '1.1.9'
     androidGifDrawableVersion = '1.2.10'
     stethoVersion = '1.5.0'
+    circleImageViewVersion = '2.2.0'
 }
 
 dependencies {
@@ -41,6 +42,7 @@ dependencies {
     //Support Library
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:support-v4:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
     implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
@@ -77,9 +79,11 @@ dependencies {
     //ReadMoreTextView
     implementation project(":readmoretextview")
 
+    //CircleImageView
+    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    implementation 'com.android.support:design:27.1.0'
 }

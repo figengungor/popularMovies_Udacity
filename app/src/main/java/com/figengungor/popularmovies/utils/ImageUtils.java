@@ -16,9 +16,9 @@ public class ImageUtils {
     }
 
     private static final String IMAGE_URL = "http://image.tmdb.org/t/p/";
-    private static final String PATH_POSTER_W185 = "w342";
+    private static final String PATH_POSTER_W342 = "w342";
     private static final String PATH_BACKDROP_W780 = "w780";
-    private static final String POSTER_URL = IMAGE_URL + PATH_POSTER_W185;
+    private static final String POSTER_URL = IMAGE_URL + PATH_POSTER_W342;
     private static final String BACKDROP_URL = IMAGE_URL + PATH_BACKDROP_W780;
 
 

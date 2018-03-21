@@ -32,9 +32,14 @@
             android:authorities="@string/content_authority"
             android:exported="false" />
 
-        <activity android:name=".ui.movieDetail.reviews.ReviewsActivity"
-            android:parentActivityName=".ui.movieDetail.MovieDetailActivity"
-            android:label="@string/reviews"/>
+        <activity
+            android:name=".ui.movieDetail.reviews.ReviewsActivity"
+            android:label="@string/reviews"
+            android:parentActivityName=".ui.movieDetail.MovieDetailActivity" />
+
+        <activity
+            android:name=".ui.castDetail.CastDetailActivity"
+            android:parentActivityName=".ui.movieDetail.MovieDetailActivity" />
     </application>
 
 </manifest>
