@@ -22,7 +22,7 @@ public interface  TmdbService {
     Call<MovieDetailResponse> getMovieDetail(@Path("movie_id") int movieId, @Query("append_to_response") String appendToResponse);
 
     @GET("person/{person_id}")
-    Call<CastDetail> getCastDetail(@Path("person_id") int personId);
+    Call<CastDetail> getCastDetail(@Path("person_id") int personId, @Query("append_to_response") String appendToResponse);
 
 
 }

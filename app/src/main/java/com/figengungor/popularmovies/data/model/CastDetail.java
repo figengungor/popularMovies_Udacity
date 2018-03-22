@@ -2,6 +2,7 @@ package com.figengungor.popularmovies.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class CastDetail {
@@ -11,7 +12,7 @@ public class CastDetail {
     private String birthday;
     @SerializedName("deathday")
     @Expose
-    private Object deathday;
+    private String deathday;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -44,7 +45,10 @@ public class CastDetail {
     private String imdbId;
     @SerializedName("homepage")
     @Expose
-    private Object homepage;
+    private String homepage;
+    @SerializedName("external_ids")
+    @Expose
+    private ExternalIds externalIds;
 
     public String getBirthday() {
         return birthday;
@@ -54,11 +58,11 @@ public class CastDetail {
         this.birthday = birthday;
     }
 
-    public Object getDeathday() {
+    public String getDeathday() {
         return deathday;
     }
 
-    public void setDeathday(Object deathday) {
+    public void setDeathday(String deathday) {
         this.deathday = deathday;
     }
 
@@ -142,12 +146,19 @@ public class CastDetail {
         this.imdbId = imdbId;
     }
 
-    public Object getHomepage() {
+    public String getHomepage() {
         return homepage;
     }
 
-    public void setHomepage(Object homepage) {
+    public void setHomepage(String homepage) {
         this.homepage = homepage;
     }
 
+    public ExternalIds getExternalIds() {
+        return externalIds;
+    }
+
+    public void setExternalIds(ExternalIds externalIds) {
+        this.externalIds = externalIds;
+    }
 }

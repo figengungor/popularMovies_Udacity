@@ -2,6 +2,8 @@ package com.figengungor.popularmovies.ui.castDetail;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -18,9 +20,8 @@ import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Cast;
 import com.figengungor.popularmovies.data.model.CastDetail;
-import com.figengungor.popularmovies.data.model.MovieDetailResponse;
-import com.figengungor.popularmovies.ui.movieDetail.MovieDetailViewModel;
-import com.figengungor.popularmovies.ui.movieDetail.MovieDetailViewModelFactory;
+import com.figengungor.popularmovies.data.model.ExternalIds;
+import com.figengungor.popularmovies.utils.DateUtils;
 import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -52,6 +53,33 @@ public class CastDetailActivity extends AppCompatActivity {
     ImageView profileIv;
     @BindView(R.id.bioTv)
     TextView bioTv;
+    @BindView(R.id.birthDeathdayTv)
+    TextView birthDeathdayTv;
+    @BindView(R.id.placeOfBirthTv)
+    TextView placeOfBirthTv;
+    @BindView(R.id.twitterIconIv)
+    ImageView twitterIconIv;
+    @BindView(R.id.facebookIconIv)
+    ImageView facebookIconIv;
+    @BindView(R.id.instagramIconIv)
+    ImageView instagramIconIv;
+
+    String twitterId, facebookId, instagramId;
+
+    @OnClick(R.id.twitterIconIv)
+    void onTwitterIconClicked() {
+        openUrl(twitterId);
+    }
+
+    @OnClick(R.id.facebookIconIv)
+    void onFacebookIconClicked() {
+        openUrl(facebookId);
+    }
+
+    @OnClick(R.id.instagramIconIv)
+    void onInstagramIconClicked() {
+        openUrl(instagramId);
+    }
 
     @OnClick(R.id.retryBtn)
     void onRetryBtnClicked() {
@@ -104,6 +132,59 @@ public class CastDetailActivity extends AppCompatActivity {
 
     private void showCastDetail(CastDetail castDetail) {
         bioTv.setText(castDetail.getBiography());
+        String birthDay = castDetail.getBirthday();
+        String deathDay = castDetail.getDeathday();
+        String birthPlace = castDetail.getPlaceOfBirth();
+
+        ExternalIds externalIds = castDetail.getExternalIds();
+
+        twitterId = externalIds.getTwitterId();
+        facebookId = externalIds.getFacebookId();
+        instagramId = externalIds.getInstagramId();
+
+        if (birthDay == null && deathDay == null)
+            birthDeathdayTv.setVisibility(View.GONE);
+        else {
+            birthDeathdayTv.setVisibility(View.VISIBLE);
+            birthDeathdayTv.setText(getString(R.string.birth_death_day,
+                    getFormattedDate(birthDay),
+                    getFormattedDate(deathDay)));
+        }
+
+        if (birthPlace == null) {
+            placeOfBirthTv.setVisibility(View.GONE);
+        } else {
+            placeOfBirthTv.setVisibility(View.VISIBLE);
+            placeOfBirthTv.setText(getString(R.string.place_of_birth, birthPlace));
+        }
+
+        if (twitterId == null) {
+            twitterIconIv.setVisibility(View.GONE);
+        } else {
+            twitterIconIv.setVisibility(View.VISIBLE);
+            twitterId = getString(R.string.twitter_url, twitterId);
+        }
+        if (facebookId == null) {
+            facebookIconIv.setVisibility(View.GONE);
+        } else {
+            facebookIconIv.setVisibility(View.VISIBLE);
+            facebookId = getString(R.string.facebook_url, facebookId);
+        }
+        if (instagramId == null) {
+            instagramIconIv.setVisibility(View.GONE);
+        } else {
+            instagramIconIv.setVisibility(View.VISIBLE);
+            instagramId = getString(R.string.instagram_url, instagramId);
+        }
+
+    }
+
+    private String getFormattedDate(String date) {
+        if (date == null) {
+            return "";
+        } else {
+            return DateUtils.getFriendlyReleaseDate(date);
+        }
     }
 
     private void setupUI() {
@@ -146,5 +227,11 @@ public class CastDetailActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    void openUrl(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        Intent chooser = Intent.createChooser(intent, getString(R.string.social_chooser_title));
+        startActivity(chooser);
     }
 }

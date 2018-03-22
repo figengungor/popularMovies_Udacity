@@ -66,6 +66,11 @@
     <string name="genres_empty_message">No genres found.</string>
     <string name="see_more">See More</string>
     <string name="youtube_video_choser_title">Play video with</string>
-
+    <string name="place_of_birth">Place of Birth: <xliff:g id="place_of_birth">%1$s</xliff:g></string>
+    <string name="birth_death_day"><xliff:g id="birthday">%1$s</xliff:g> - <xliff:g id="deathday">%2$s</xliff:g></string>
+    <string name="twitter_url">https://twitter.com/<xliff:g id="twitter_id">%1$s</xliff:g></string>
+    <string name="facebook_url">https://www.facebook.com/<xliff:g id="facebook_id">%1$s</xliff:g></string>
+    <string name="instagram_url">https://www.instagram.com/<xliff:g id="instagram_id">%1$s</xliff:g></string>
+    <string name="social_chooser_title">Open with</string>
 
 </resources>

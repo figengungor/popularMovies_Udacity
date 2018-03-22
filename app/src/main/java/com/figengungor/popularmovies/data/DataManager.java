@@ -39,16 +39,16 @@ public class DataManager {
         return call;
     }
 
-    public Call getMovieDetail(int movieId, TmdbCallback<MovieDetailResponse> listener) {
-        Call<MovieDetailResponse> call = tmdbService.getMovieDetail(movieId, Constants.MOVIE_DETAIL_APPEND_TO_RESPONSE);
-        call.enqueue(listener);
-        return call;
+    public void getMovieDetail(int movieId, TmdbCallback<MovieDetailResponse> listener) {
+        tmdbService.getMovieDetail(movieId, Constants.MOVIE_DETAIL_APPEND_TO_RESPONSE)
+                .enqueue(listener);
+
     }
 
-    public Call getCastDetail(int personId, TmdbCallback<CastDetail> listener) {
-        Call<CastDetail> call = tmdbService.getCastDetail(personId);
-        call.enqueue(listener);
-        return call;
+    public void getCastDetail(int personId, TmdbCallback<CastDetail> listener) {
+        tmdbService.getCastDetail(personId, Constants.CAST_DETAIL_APPEND_TO_RESPONSE)
+                .enqueue(listener);
+
     }
 
     public String getMovieListType() {
