@@ -30,11 +30,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/backdrop_content_description"
-                app:aspectRatio="0.5513"
                 android:scaleType="centerCrop"
+                app:aspectRatio="0.5513"
                 app:aspectRatioEnabled="true"
                 app:layout_collapseMode="parallax"
                 app:srcCompat="@drawable/backdrop" />
+
+            <ImageButton
+                android:id="@+id/playTrailerBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:padding="4dp"
+                android:background="@drawable/circle_transparent"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
 
             <!--Remove extra space between up button and title https://stackoverflow.com/a/38200137/1463542-->
             <android.support.v7.widget.Toolbar

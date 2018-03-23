@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -27,6 +28,7 @@ import com.figengungor.popularmovies.data.model.Cast;
 import com.figengungor.popularmovies.data.model.Movie;
 import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.data.model.Video;
+import com.figengungor.popularmovies.data.model.Videos;
 import com.figengungor.popularmovies.ui.castDetail.CastDetailActivity;
 import com.figengungor.popularmovies.ui.movieDetail.cast.CastAdapter;
 import com.figengungor.popularmovies.ui.movieDetail.cast.CastLayout;
@@ -45,6 +47,8 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.parceler.Parcels;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -59,12 +63,16 @@ public class MovieDetailActivity extends AppCompatActivity implements
     private static final String TAG = MovieDetailActivity.class.getSimpleName();
     Movie movie;
     MovieDetailViewModel viewModel;
+    String trailerKey;
 
     @BindView(R.id.backdropIv)
     ImageView backdropIv;
 
     @BindView(R.id.posterIv)
     ImageView posterIv;
+
+    @BindView(R.id.playTrailerBtn)
+    ImageButton playTrailerBtn;
 
     @BindView(R.id.titleTv)
     TextView titleTv;
@@ -96,13 +104,18 @@ public class MovieDetailActivity extends AppCompatActivity implements
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.retryBtn)
+    Button retryBtn;
+
+    @OnClick(R.id.playTrailerBtn)
+    void onPlayTrailerBtnClicked() {
+        watchYoutubeVideo(trailerKey);
+    }
+
     @OnClick(R.id.favoriteBtn)
     void onFavoriteBtnClicked() {
         viewModel.updateFavorite(movie);
     }
-
-    @BindView(R.id.retryBtn)
-    Button retryBtn;
 
     @OnClick(R.id.retryBtn)
     void onRetryBtnClicked() {
@@ -178,6 +191,7 @@ public class MovieDetailActivity extends AppCompatActivity implements
         contentLl.addView(new GenresLayout(this, movieDetailResponse.getGenres()));
 
         //VIDEOS
+        showTrailerBtn(movieDetailResponse.getVideos());
         contentLl.addView(new VideosLayout(this, this, movieDetailResponse.getVideos()));
 
         //REVIEWS
@@ -191,6 +205,24 @@ public class MovieDetailActivity extends AppCompatActivity implements
 
         //DETAILS
         contentLl.addView(new DetailsLayout(this, movieDetailResponse));
+    }
+
+    private void showTrailerBtn(Videos videos) {
+        List<Video> videoList = videos.getVideos();
+        if (videoList != null
+                && videoList.size() > 0) {
+            for (Video video : videoList) {
+                if (video.getType().equalsIgnoreCase("Trailer")) {
+                    trailerKey = video.getKey();
+                    playTrailerBtn.setVisibility(View.VISIBLE);
+                    playTrailerBtn.animate().
+                            scaleX(2.0f).
+                            scaleY(2.0f).
+                            setDuration(600).start();
+                    break;
+                }
+            }
+        }
     }
 
     private void setupUI() {
