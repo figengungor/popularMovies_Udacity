@@ -73,11 +73,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/instagramIconIv"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/twitterIconIv"
-        app:layout_constraintTop_toTopOf="@+id/twitterIconIv"
+        app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
         app:srcCompat="@drawable/ic_facebook"
         tools:visibility="visible" />
 
@@ -87,10 +88,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/facebookIconIv"
-        app:layout_constraintTop_toTopOf="@+id/twitterIconIv"
+        app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
         app:srcCompat="@drawable/ic_instagram"
         tools:visibility="visible" />
 
@@ -106,13 +108,13 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barrier"
+        app:layout_constraintTop_toBottomOf="@+id/barrierSocialBottom"
         app:trimLines="15"
         app:trimMode="trimModeLength"
         tools:text="@tools:sample/lorem" />
 
     <android.support.constraint.Barrier
-        android:id="@+id/barrier"
+        android:id="@+id/barrierSocialBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
