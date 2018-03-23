@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,6 +39,7 @@ public class CastDetailActivity extends AppCompatActivity {
     public static final String EXTRA_PERSON_ID = "person_id";
     private Cast cast;
     private CastDetailViewModel viewModel;
+    private String twitterId, facebookId, instagramId;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -63,8 +65,8 @@ public class CastDetailActivity extends AppCompatActivity {
     ImageView facebookIconIv;
     @BindView(R.id.instagramIconIv)
     ImageView instagramIconIv;
-
-    String twitterId, facebookId, instagramId;
+    @BindView(R.id.contentCl)
+    ConstraintLayout contentCl;
 
     @OnClick(R.id.twitterIconIv)
     void onTwitterIconClicked() {
@@ -106,6 +108,7 @@ public class CastDetailActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable CastDetail castDetail) {
                 if (castDetail != null) showCastDetail(castDetail);
+                else contentCl.setVisibility(View.GONE);
             }
         });
 
@@ -131,6 +134,7 @@ public class CastDetailActivity extends AppCompatActivity {
     }
 
     private void showCastDetail(CastDetail castDetail) {
+        contentCl.setVisibility(View.VISIBLE);
         bioTv.setText(castDetail.getBiography());
         String birthDay = castDetail.getBirthday();
         String deathDay = castDetail.getDeathday();
@@ -214,6 +218,7 @@ public class CastDetailActivity extends AppCompatActivity {
     }
 
     private void showError(Throwable throwable) {
+        contentCl.setVisibility(View.GONE);
         messageLayout.setVisibility(View.VISIBLE);
         retryBtn.setVisibility(View.VISIBLE);
         messageTv.setText(ErrorUtils.displayFriendlyErrorMessage(this, throwable));

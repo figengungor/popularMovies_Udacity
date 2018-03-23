@@ -27,16 +27,7 @@
             android:padding="16dp"
             tools:context="com.figengungor.popularmovies.ui.castDetail.CastDetailActivity">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profileIv"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:src="@mipmap/ic_launcher"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <include layout="@layout/content_cast_detail"/>
 
             <include
                 android:id="@+id/messageLayout"
@@ -45,7 +36,9 @@
                 android:layout_height="0dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
 
             <include
                 android:id="@+id/include"
@@ -56,111 +49,11 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/birthDeathdayTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/play_regular"
-                android:text="@string/birth_death_day"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileIv"
-                tools:text="1982-05-01 - "
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/placeOfBirthTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/play_regular"
-                android:text="@string/place_of_birth"
-                android:textColor="@color/white"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/birthDeathdayTv"
-                tools:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/twitterIconIv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@+id/facebookIconIv"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
-                app:srcCompat="@drawable/ic_twitter"
-                tools:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/facebookIconIv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@+id/instagramIconIv"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/twitterIconIv"
-                app:layout_constraintTop_toTopOf="@+id/twitterIconIv"
-                app:srcCompat="@drawable/ic_facebook"
-                tools:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/instagramIconIv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="16dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/facebookIconIv"
-                app:layout_constraintTop_toTopOf="@+id/twitterIconIv"
-                app:srcCompat="@drawable/ic_instagram"
-                tools:visibility="visible" />
-
-            <com.borjabravo.readmoretextview.ReadMoreTextView
-                android:id="@+id/bioTv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/play_regular"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrier"
-                app:trimLines="15"
-                app:trimMode="trimModeLength"
-                tools:text="@tools:sample/lorem" />
-
-            <android.support.constraint.Barrier
-                android:id="@+id/barrier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="twitterIconIv,facebookIconIv,instagramIconIv" />
 
         </android.support.constraint.ConstraintLayout>
 
