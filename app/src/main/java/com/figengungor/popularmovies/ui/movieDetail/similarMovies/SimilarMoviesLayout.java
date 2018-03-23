@@ -31,14 +31,15 @@ public class SimilarMoviesLayout extends LinearLayout {
         init(context);
     }
 
-    public SimilarMoviesLayout(Context context, Similar similar) {
+    public SimilarMoviesLayout(Context context, SimilarMoviesAdapter.ItemListener itemListener, Similar similar) {
         super(context);
         init(context);
-        if (similar.getMovies() == null || similar.getMovies().size() == 0){
+        if (similar.getMovies() == null || similar.getMovies().size() == 0) {
             emptyMessageTv.setVisibility(View.VISIBLE);
         } else {
             emptyMessageTv.setVisibility(View.GONE);
             SimilarMoviesAdapter adapter = new SimilarMoviesAdapter(similar.getMovies(), context);
+            adapter.setItemListener(itemListener);
             similarMoviesRv.setAdapter(adapter);
             similarMoviesRv.setNestedScrollingEnabled(false);
         }

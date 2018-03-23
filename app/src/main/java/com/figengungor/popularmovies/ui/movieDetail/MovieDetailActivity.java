@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ import com.figengungor.popularmovies.ui.movieDetail.details.DetailsLayout;
 import com.figengungor.popularmovies.ui.movieDetail.genres.GenresLayout;
 import com.figengungor.popularmovies.ui.movieDetail.reviews.ReviewsActivity;
 import com.figengungor.popularmovies.ui.movieDetail.reviews.ReviewsLayout;
+import com.figengungor.popularmovies.ui.movieDetail.similarMovies.SimilarMoviesAdapter;
 import com.figengungor.popularmovies.ui.movieDetail.similarMovies.SimilarMoviesLayout;
 import com.figengungor.popularmovies.ui.movieDetail.videos.VideosAdapter;
 import com.figengungor.popularmovies.ui.movieDetail.videos.VideosLayout;
@@ -51,6 +53,7 @@ import butterknife.OnClick;
 public class MovieDetailActivity extends AppCompatActivity implements
         VideosAdapter.ItemListener,
         CastAdapter.ItemListener,
+        SimilarMoviesAdapter.ItemListener,
         ReviewsLayout.ReviewsListener {
 
     public static final String EXTRA_MOVIE = "movie";
@@ -182,7 +185,7 @@ public class MovieDetailActivity extends AppCompatActivity implements
         contentLl.addView(new CastLayout(this, this, movieDetailResponse.getCredits()));
 
         //SIMILAR MOVIES
-        contentLl.addView(new SimilarMoviesLayout(this, movieDetailResponse.getSimilar()));
+        contentLl.addView(new SimilarMoviesLayout(this, this, movieDetailResponse.getSimilar()));
 
         //DETAILS
         contentLl.addView(new DetailsLayout(this, movieDetailResponse));
@@ -288,6 +291,22 @@ public class MovieDetailActivity extends AppCompatActivity implements
     @Override
     public void onItemClicked(Cast item) {
         startActivity(new Intent(this, CastDetailActivity.class)
-        .putExtra(CastDetailActivity.EXTRA_PERSON_ID, Parcels.wrap(item)));
+                .putExtra(CastDetailActivity.EXTRA_PERSON_ID, Parcels.wrap(item)));
+    }
+
+    @Override
+    public void onItemClicked(Movie item) {
+        startActivity(new Intent(this, MovieDetailActivity.class)
+                .putExtra(EXTRA_MOVIE, Parcels.wrap(item)));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
