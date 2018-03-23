@@ -1,186 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:fitsSystemWindows="true"
+    tools:context="com.figengungor.popularmovies.ui.movieDetail.MovieDetailActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <!--Only display title when collapsed https://stackoverflow.com/a/38134467/1463542-->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@style/TransparentText"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/backdropIv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/backdrop_content_description"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                app:srcCompat="@drawable/backdrop" />
+
+            <!--Remove extra space between up button and title https://stackoverflow.com/a/38200137/1463542-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_movie_detail" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/favoriteBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        tools:context="com.figengungor.popularmovies.ui.movieDetail.MovieDetailActivity">
+        android:clickable="true"
+        android:focusable="true"
+        android:tint="@color/white"
+        app:backgroundTint="@color/pink"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_star_border_black_24dp"
+        app:useCompatPadding="true" />
 
-        <ImageView
-            android:id="@+id/backdropIv"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:contentDescription="@string/backdrop_content_description"
-            app:layout_constraintDimensionRatio="780:439"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/backdrop" />
-
-        <ImageView
-            android:id="@+id/posterIv"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/poster_content_description"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="342:513"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineCenterVertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backdropIv"
-            app:srcCompat="@drawable/poster" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guidelineCenterVertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.35" />
-
-        <TextView
-            android:id="@+id/titleTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/play_bold"
-            android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guidelineCenterVertical"
-            app:layout_constraintTop_toBottomOf="@+id/favoriteBtn"
-            tools:text="@sample/movies.json/results/title" />
-
-        <TextView
-            android:id="@+id/ratingTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/play_regular"
-            android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="@+id/titleTv"
-            app:layout_constraintStart_toStartOf="@+id/titleTv"
-            app:layout_constraintTop_toBottomOf="@+id/titleTv"
-            tools:text="5.9/10" />
-
-        <TextView
-            android:id="@+id/releaseDateTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:drawablePadding="8dp"
-            android:fontFamily="@font/play_regular"
-            android:gravity="center"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="@+id/ratingTv"
-            app:layout_constraintStart_toEndOf="@+id/dateIv"
-            app:layout_constraintTop_toBottomOf="@+id/ratingTv"
-            tools:text="@sample/movies.json/results/release_date" />
-
-        <ImageView
-            android:id="@+id/dateIv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:contentDescription="@null"
-            android:tint="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@+id/releaseDateTv"
-            app:layout_constraintEnd_toStartOf="@+id/releaseDateTv"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@+id/ratingTv"
-            app:layout_constraintTop_toTopOf="@+id/releaseDateTv"
-            app:srcCompat="@drawable/ic_date_range_black_24dp" />
-
-        <android.support.constraint.Barrier
-            android:id="@+id/barrierVertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="posterIv,releaseDateTv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <com.borjabravo.readmoretextview.ReadMoreTextView
-            android:id="@+id/overviewTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/play_regular"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:trimLines="5"
-            app:trimMode="trimModeLine"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/barrierVertical"
-            tools:text="@sample/movies.json/results/overview" />
-
-
-        <LinearLayout
-            android:id="@+id/contentLl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/overviewTv" />
-
-        <include
-            android:id="@+id/messageLayout"
-            layout="@layout/message"
-            android:visibility="invisible"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/overviewTv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <include
-            layout="@layout/loading"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/overviewTv"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/favoriteBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:tint="@color/white"
-            app:backgroundTint="@color/pink"
-            app:layout_constraintBottom_toBottomOf="@+id/backdropIv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backdropIv"
-            app:srcCompat="@drawable/ic_star_border_black_24dp" />
-
-    </android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

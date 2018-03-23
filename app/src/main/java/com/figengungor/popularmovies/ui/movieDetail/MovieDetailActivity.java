@@ -2,7 +2,6 @@ package com.figengungor.popularmovies.ui.movieDetail;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
@@ -24,7 +24,6 @@ import android.widget.TextView;
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Cast;
-import com.figengungor.popularmovies.data.model.CastDetail;
 import com.figengungor.popularmovies.data.model.Movie;
 import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.data.model.Video;
@@ -93,6 +92,9 @@ public class MovieDetailActivity extends AppCompatActivity implements
 
     @BindView(R.id.loadingPw)
     ProgressWheel loadingPw;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @OnClick(R.id.favoriteBtn)
     void onFavoriteBtnClicked() {
@@ -210,7 +212,9 @@ public class MovieDetailActivity extends AppCompatActivity implements
     }
 
     private void setupToolbar() {
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(movie.getTitle());
     }
 
     private void setupContent() {
@@ -245,10 +249,10 @@ public class MovieDetailActivity extends AppCompatActivity implements
 
     private void showFavorite(Boolean isFavorite) {
         if (isFavorite) {
-            favoriteBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_black_24dp));
+            favoriteBtn.setImageResource(R.drawable.ic_star_black_24dp);
             favoriteBtn.setContentDescription(getString(R.string.remove_from_favorites_button_content_description));
         } else {
-            favoriteBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_border_black_24dp));
+            favoriteBtn.setImageResource(R.drawable.ic_star_border_black_24dp);
             favoriteBtn.setContentDescription(getString(R.string.add_to_favorites_button_content_description));
         }
     }

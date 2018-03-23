@@ -23,9 +23,8 @@
         </activity>
         <activity
             android:name=".ui.movieDetail.MovieDetailActivity"
-            android:label=""
             android:parentActivityName=".ui.movieList.MovieListActivity"
-            android:theme="@style/AppTheme.ActionBar.Transparent" />
+            android:theme="@style/Theme.Translucent" />
 
         <provider
             android:name=".data.local.MovieProvider"
