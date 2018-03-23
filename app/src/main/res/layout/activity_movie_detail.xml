@@ -10,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -25,14 +25,14 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
-            <ImageView
+            <com.figengungor.popularmovies.ui.custom.AspectRatioImageView
                 android:id="@+id/backdropIv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/backdrop_content_description"
-                android:fitsSystemWindows="true"
+                app:aspectRatio="0.5513"
                 android:scaleType="centerCrop"
+                app:aspectRatioEnabled="true"
                 app:layout_collapseMode="parallax"
                 app:srcCompat="@drawable/backdrop" />
 
