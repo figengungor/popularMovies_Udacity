@@ -42,7 +42,11 @@ public class TaggedImageAdapter extends RecyclerView.Adapter<TaggedImageAdapter.
     @Override
     public void onBindViewHolder(@NonNull TaggedImageViewHolder holder, int position) {
         TaggedImage item = items.get(position);
-        holder.nameTv.setText(item.getMedia().getTitle());
+        if (item.getMediaType().equalsIgnoreCase("tv")) {
+            holder.nameTv.setText(item.getMedia().getName());
+        } else {
+            holder.nameTv.setText(item.getMedia().getTitle());
+        }
 
         ImageUtils.loadImageUrl(item.getFilePath(), holder.taggedIv, ImageUtils.ImageType.POSTER);
 

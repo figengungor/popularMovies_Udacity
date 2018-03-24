@@ -43,6 +43,9 @@ public class Media {
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("name")
+    @Expose
+    private String name;
     @SerializedName("vote_average")
     @Expose
     private Double voteAverage;
@@ -165,4 +168,11 @@ public class Media {
         this.releaseDate = releaseDate;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
