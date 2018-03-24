@@ -72,5 +72,7 @@
     <string name="facebook_url">https://www.facebook.com/<xliff:g id="facebook_id">%1$s</xliff:g></string>
     <string name="instagram_url">https://www.instagram.com/<xliff:g id="instagram_id">%1$s</xliff:g></string>
     <string name="social_chooser_title">Open with</string>
+    <string name="director">Director</string>
+    <string name="writer">Writer</string>
 
 </resources>
