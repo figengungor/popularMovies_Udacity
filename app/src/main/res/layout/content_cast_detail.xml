@@ -45,13 +45,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/play_regular"
-        android:text="@string/place_of_birth"
+        tools:text="New York, USA"
         android:textColor="@color/white"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthDeathdayTv"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:gravity="center"/>
 
     <ImageView
         android:id="@+id/twitterIconIv"

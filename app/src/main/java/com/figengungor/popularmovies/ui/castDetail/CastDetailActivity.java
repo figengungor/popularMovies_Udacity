@@ -179,7 +179,7 @@ public class CastDetailActivity extends AppCompatActivity {
             placeOfBirthTv.setVisibility(View.GONE);
         } else {
             placeOfBirthTv.setVisibility(View.VISIBLE);
-            placeOfBirthTv.setText(getString(R.string.place_of_birth, birthPlace));
+            placeOfBirthTv.setText(birthPlace);
         }
 
         if (twitterId == null) {
