@@ -34,6 +34,18 @@
             android:tint="@color/white"
             app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
 
+        <TextView
+            android:id="@+id/typeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Trailer"
+            android:fontFamily="@font/play_regular"
+            android:textColor="@color/white"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:background="@color/colorTransparentAccent"
+            android:layout_gravity="top|right"/>
+
     </FrameLayout>
 
     <TextView

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -65,6 +64,8 @@ public class VideosAdapter extends
 
         holder.nameTv.setText(item.getName());
 
+        holder.typeTv.setText(item.getType());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +86,8 @@ public class VideosAdapter extends
         ImageView previewIv;
         @BindView(R.id.nameTv)
         TextView nameTv;
+        @BindView(R.id.typeTv)
+        TextView typeTv;
 
         public VideoViewHolder(View itemView) {
             super(itemView);

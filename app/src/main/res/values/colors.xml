@@ -9,4 +9,5 @@
     <color name="white">#ffffff</color>
     <color name="colorTranslucent">#30000000</color>
     <color name="headerTransparent">#70000000</color>
+    <color name="colorTransparentAccent">#AA01EB5C</color>
 </resources>
