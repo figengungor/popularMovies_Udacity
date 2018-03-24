@@ -113,6 +113,21 @@
         app:trimMode="trimModeLength"
         tools:text="@tools:sample/lorem" />
 
+    <Button
+        android:id="@+id/taggedImagesBtn"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/tagged_images"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bioTv"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
     <android.support.constraint.Barrier
         android:id="@+id/barrierSocialBottom"
         android:layout_width="wrap_content"

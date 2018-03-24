@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Cast;
 import com.figengungor.popularmovies.data.model.CastDetail;
 import com.figengungor.popularmovies.data.model.ExternalIds;
+import com.figengungor.popularmovies.data.model.TaggedImages;
+import com.figengungor.popularmovies.ui.taggedImageList.TaggedImageListActivity;
 import com.figengungor.popularmovies.utils.DateUtils;
 import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
@@ -65,8 +68,18 @@ public class CastDetailActivity extends AppCompatActivity {
     ImageView facebookIconIv;
     @BindView(R.id.instagramIconIv)
     ImageView instagramIconIv;
+    @BindView(R.id.taggedImagesBtn)
+    Button taggedImagesBtn;
     @BindView(R.id.contentCl)
     ConstraintLayout contentCl;
+
+    CastDetail castDetail;
+
+    @OnClick(R.id.taggedImagesBtn)
+    void onTaggedImagesBtnClicked() {
+        startActivity(new Intent(this, TaggedImageListActivity.class)
+                .putExtra(TaggedImageListActivity.EXTRA_TAGGED_IMAGES, Parcels.wrap(castDetail.getTaggedImages())));
+    }
 
     @OnClick(R.id.twitterIconIv)
     void onTwitterIconClicked() {
@@ -134,17 +147,24 @@ public class CastDetailActivity extends AppCompatActivity {
     }
 
     private void showCastDetail(CastDetail castDetail) {
+        this.castDetail = castDetail;
         contentCl.setVisibility(View.VISIBLE);
-        bioTv.setText(castDetail.getBiography());
+
+        String bio = castDetail.getBiography();
         String birthDay = castDetail.getBirthday();
         String deathDay = castDetail.getDeathday();
         String birthPlace = castDetail.getPlaceOfBirth();
-
         ExternalIds externalIds = castDetail.getExternalIds();
+        TaggedImages taggedImages = castDetail.getTaggedImages();
 
         twitterId = externalIds.getTwitterId();
         facebookId = externalIds.getFacebookId();
         instagramId = externalIds.getInstagramId();
+
+        if (TextUtils.isEmpty(bio))
+            bioTv.setText(getString(R.string.bio_empty_message));
+        else
+            bioTv.setText(castDetail.getBiography());
 
         if (birthDay == null && deathDay == null)
             birthDeathdayTv.setVisibility(View.GONE);
@@ -179,6 +199,12 @@ public class CastDetailActivity extends AppCompatActivity {
         } else {
             instagramIconIv.setVisibility(View.VISIBLE);
             instagramId = getString(R.string.instagram_url, instagramId);
+        }
+
+        if (taggedImages == null || taggedImages.getTaggedImages() == null || taggedImages.getTaggedImages().size() == 0) {
+            taggedImagesBtn.setVisibility(View.GONE);
+        } else {
+            taggedImagesBtn.setVisibility(View.VISIBLE);
         }
 
     }

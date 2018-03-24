@@ -50,6 +50,10 @@ public class CastDetail {
     @Expose
     private ExternalIds externalIds;
 
+    @SerializedName("tagged_images")
+    @Expose
+    private TaggedImages taggedImages;
+
     public String getBirthday() {
         return birthday;
     }
@@ -160,5 +164,13 @@ public class CastDetail {
 
     public void setExternalIds(ExternalIds externalIds) {
         this.externalIds = externalIds;
+    }
+
+    public TaggedImages getTaggedImages() {
+        return taggedImages;
+    }
+
+    public void setTaggedImages(TaggedImages taggedImages) {
+        this.taggedImages = taggedImages;
     }
 }

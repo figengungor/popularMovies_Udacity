@@ -35,10 +35,12 @@
             android:name=".ui.movieDetail.reviews.ReviewsActivity"
             android:label="@string/reviews"
             android:parentActivityName=".ui.movieDetail.MovieDetailActivity" />
-
         <activity
             android:name=".ui.castDetail.CastDetailActivity"
             android:parentActivityName=".ui.movieDetail.MovieDetailActivity" />
+        <activity
+            android:name=".ui.taggedImageList.TaggedImageListActivity"
+            android:label="@string/tagged_images"></activity>
     </application>
 
 </manifest>

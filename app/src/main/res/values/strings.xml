@@ -74,5 +74,7 @@
     <string name="social_chooser_title">Open with</string>
     <string name="director">Director</string>
     <string name="writer">Writer</string>
+    <string name="tagged_images">Tagged Images</string>
+    <string name="bio_empty_message">There is no biography about this person, yet.</string>
 
 </resources>
