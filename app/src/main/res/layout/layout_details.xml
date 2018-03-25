@@ -50,135 +50,125 @@
         android:id="@+id/releaseDateTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:fontFamily="@font/play_regular"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
-        app:layout_constraintTop_toTopOf="@id/releaseDateLabel"
-        tools:text="April 27, 2018"
-        android:fontFamily="@font/play_regular"/>
+        app:layout_constraintStart_toStartOf="@+id/releaseDateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/releaseDateLabel"
+        tools:text="April 27, 2018" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/originalTitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/play_bold"
         android:text="@string/original_title"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/releaseDateLabel"
-        android:fontFamily="@font/play_bold"/>
+        app:layout_constraintTop_toBottomOf="@+id/releaseDateTv" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/originalTitleTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="120dp"
+        android:fontFamily="@font/play_regular"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
-        app:layout_constraintTop_toTopOf="@id/originalTitleLabel"
-        tools:text="Black Panther"
-        android:fontFamily="@font/play_regular"/>
+        app:layout_constraintStart_toStartOf="@+id/originalTitleLabel"
+        app:layout_constraintTop_toBottomOf="@+id/originalTitleLabel"
+        tools:text="Black Panther" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/originalLanguageLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/play_bold"
         android:text="@string/original_language"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/originalTitleLabel"
-        android:fontFamily="@font/play_bold"/>
+        app:layout_constraintTop_toBottomOf="@+id/originalTitleTv" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/originalLanguageTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:fontFamily="@font/play_regular"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
-        app:layout_constraintTop_toTopOf="@+id/originalLanguageLabel"
-        tools:text="en"
-        android:fontFamily="@font/play_regular"/>
+        app:layout_constraintStart_toStartOf="@+id/originalLanguageLabel"
+        app:layout_constraintTop_toBottomOf="@+id/originalLanguageLabel"
+        tools:text="en" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/durationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/play_bold"
         android:text="@string/duration"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/originalLanguageTv"
-        android:fontFamily="@font/play_bold"/>
+        app:layout_constraintTop_toBottomOf="@+id/originalLanguageTv" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/durationTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:fontFamily="@font/play_regular"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
-        app:layout_constraintTop_toTopOf="@+id/durationLabel"
-        tools:text="120 min"
-        android:fontFamily="@font/play_regular"/>
+        app:layout_constraintStart_toStartOf="@+id/durationLabel"
+        app:layout_constraintTop_toBottomOf="@+id/durationLabel"
+        tools:text="120 min" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/budgetLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/durationLabel"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/play_bold"
         android:text="@string/budget"
         android:textColor="@color/white"
-        android:fontFamily="@font/play_bold"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/durationTv" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/budgetTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="@font/play_regular"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
-        app:layout_constraintTop_toTopOf="@+id/budgetLabel"
-        tools:text="200000000"
-        android:fontFamily="@font/play_regular"/>
+        app:layout_constraintStart_toStartOf="@+id/budgetLabel"
+        app:layout_constraintTop_toBottomOf="@+id/budgetLabel"
+        tools:text="200000000" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/revenueLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetLabel"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/play_bold"
         android:text="@string/revenue"
         android:textColor="@color/white"
-        android:fontFamily="@font/play_bold"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budgetTv" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/revenueTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:fontFamily="@font/play_regular"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
-        app:layout_constraintTop_toTopOf="@+id/revenueLabel"
-        tools:text="1182500528"
-        android:fontFamily="@font/play_regular"/>
+        app:layout_constraintStart_toStartOf="@+id/revenueLabel"
+        app:layout_constraintTop_toBottomOf="@+id/revenueLabel"
+        tools:text="1182500528" />
 
-    <android.support.constraint.Barrier
-        android:id="@+id/labelBarrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="right"
-        app:constraint_referenced_ids="releaseDateLabel,originalTitleLabel, originalLanguageLabel,budgetLabel,revenueLabel" />
 
 
 </android.support.constraint.ConstraintLayout>

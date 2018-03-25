@@ -14,99 +14,99 @@
         android:paddingBottom="16dp"
         tools:context="com.figengungor.popularmovies.ui.movieDetail.MovieDetailActivity">
 
-        <ImageView
-            android:id="@+id/posterIv"
+
+        <LinearLayout
+            android:id="@+id/headerContent"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/poster_content_description"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="342:513"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineCenterVertical"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/poster" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guidelineCenterVertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.35" />
+            <com.figengungor.popularmovies.ui.custom.AspectRatioImageView
+                android:id="@+id/posterIv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="4"
+                android:contentDescription="@string/poster_content_description"
+                app:aspectRatio="1.5"
+                app:aspectRatioEnabled="true"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/poster" />
 
-        <TextView
-            android:id="@+id/titleTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/play_bold"
-            android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guidelineCenterVertical"
-            app:layout_constraintTop_toTopOf="@+id/posterIv"
-            tools:text="@sample/movies.json/results/title" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/ratingTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/play_regular"
-            android:gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="@+id/titleTv"
-            app:layout_constraintStart_toStartOf="@+id/titleTv"
-            app:layout_constraintTop_toBottomOf="@+id/titleTv"
-            tools:text="5.9/10" />
+                <TextView
+                    android:id="@+id/titleTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/play_bold"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textColor="@android:color/white"
+                    tools:text="@sample/movies.json/results/title" />
 
-        <TextView
-            android:id="@+id/releaseDateTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:drawablePadding="8dp"
-            android:fontFamily="@font/play_regular"
-            android:gravity="center"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="@+id/ratingTv"
-            app:layout_constraintStart_toEndOf="@+id/dateIv"
-            app:layout_constraintTop_toBottomOf="@+id/ratingTv"
-            tools:text="@sample/movies.json/results/release_date" />
+                <TextView
+                    android:id="@+id/ratingTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/play_regular"
+                    android:gravity="center_horizontal"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/colorAccent"
+                    tools:text="5.9/10" />
 
-        <ImageView
-            android:id="@+id/dateIv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:contentDescription="@null"
-            android:tint="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@+id/releaseDateTv"
-            app:layout_constraintEnd_toStartOf="@+id/releaseDateTv"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@+id/ratingTv"
-            app:layout_constraintTop_toTopOf="@+id/releaseDateTv"
-            app:srcCompat="@drawable/ic_date_range_black_24dp" />
 
-        <android.support.constraint.Barrier
-            android:id="@+id/barrierVertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="posterIv,releaseDateTv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/dateIv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@null"
+                        android:tint="@android:color/darker_gray"
+                        app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                    <TextView
+                        android:id="@+id/releaseDateTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/play_regular"
+                        android:gravity="center"
+                        android:textColor="@android:color/darker_gray"
+                        tools:text="@sample/movies.json/results/release_date" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <com.borjabravo.readmoretextview.ReadMoreTextView
             android:id="@+id/overviewTv"
@@ -120,12 +120,12 @@
             android:fontFamily="@font/play_regular"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            app:trimLines="5"
-            app:trimMode="trimModeLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/barrierVertical"
+            app:layout_constraintTop_toBottomOf="@+id/headerContent"
+            app:trimLines="5"
+            app:trimMode="trimModeLine"
             tools:text="@sample/movies.json/results/overview" />
 
 
@@ -142,12 +142,12 @@
         <include
             android:id="@+id/messageLayout"
             layout="@layout/message"
-            android:visibility="invisible"
-            android:layout_height="wrap_content"
             android:layout_width="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/overviewTv"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overviewTv" />
 
         <include
             layout="@layout/loading"
@@ -156,7 +156,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/overviewTv"/>
+            app:layout_constraintTop_toBottomOf="@+id/overviewTv" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>

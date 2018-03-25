@@ -54,51 +54,65 @@
         tools:visibility="visible"
         android:gravity="center"/>
 
-    <ImageView
-        android:id="@+id/twitterIconIv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/facebookIconIv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
-        app:srcCompat="@drawable/ic_twitter"
-        tools:visibility="visible"
-        android:contentDescription="@string/twitter_profile_content_description"/>
-
-    <ImageView
-        android:id="@+id/facebookIconIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/instagramIconIv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/twitterIconIv"
-        app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
-        app:srcCompat="@drawable/ic_facebook"
-        tools:visibility="visible"
-        android:contentDescription="@string/facebook_profile_content_description"/>
-
-    <ImageView
-        android:id="@+id/instagramIconIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:visibility="gone"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/facebookIconIv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
-        app:srcCompat="@drawable/ic_instagram"
-        tools:visibility="visible"
-        android:contentDescription="@string/instagram_profile_content_description"/>
+        android:id="@+id/socialContentLl">
+
+        <ImageView
+            android:id="@+id/twitterIconIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/facebookIconIv"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
+            app:srcCompat="@drawable/ic_twitter"
+            tools:visibility="visible"
+            android:contentDescription="@string/twitter_profile_content_description"/>
+
+        <ImageView
+            android:id="@+id/facebookIconIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/instagramIconIv"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/twitterIconIv"
+            app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
+            app:srcCompat="@drawable/ic_facebook"
+            tools:visibility="visible"
+            android:contentDescription="@string/facebook_profile_content_description"/>
+
+        <ImageView
+            android:id="@+id/instagramIconIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/facebookIconIv"
+            app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
+            app:srcCompat="@drawable/ic_instagram"
+            tools:visibility="visible"
+            android:contentDescription="@string/instagram_profile_content_description"/>
+
+    </LinearLayout>
+
+
 
     <com.borjabravo.readmoretextview.ReadMoreTextView
         android:id="@+id/bioTv"
@@ -112,7 +126,7 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barrierSocialBottom"
+        app:layout_constraintTop_toBottomOf="@+id/socialContentLl"
         app:trimLines="15"
         app:trimMode="trimModeLength"
         tools:text="@tools:sample/lorem" />
@@ -131,12 +145,5 @@
         app:layout_constraintTop_toBottomOf="@+id/bioTv"
         android:visibility="gone"
         tools:visibility="visible"/>
-
-    <android.support.constraint.Barrier
-        android:id="@+id/barrierSocialBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="twitterIconIv,facebookIconIv,instagramIconIv" />
 
 </android.support.constraint.ConstraintLayout>
