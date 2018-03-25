@@ -23,6 +23,8 @@ public class DetailsLayout extends ConstraintLayout {
     AppCompatTextView originalTitleTv;
     @BindView(R.id.originalLanguageTv)
     AppCompatTextView originalLanguageTv;
+    @BindView(R.id.durationTv)
+    AppCompatTextView durationTv;
     @BindView(R.id.budgetTv)
     AppCompatTextView budgetTv;
     @BindView(R.id.revenueTv)
@@ -39,6 +41,7 @@ public class DetailsLayout extends ConstraintLayout {
         releaseDateTv.setText(DateUtils.getFriendlyReleaseDate(movieDetailResponse.getReleaseDate()));
         originalTitleTv.setText(movieDetailResponse.getOriginalTitle());
         originalLanguageTv.setText(movieDetailResponse.getOriginalLanguage());
+        durationTv.setText(context.getString(R.string.duration_format, movieDetailResponse.getRuntime()));
         budgetTv.setText(String.valueOf(movieDetailResponse.getBudget()));
         revenueTv.setText(String.valueOf(movieDetailResponse.getRevenue()));
     }

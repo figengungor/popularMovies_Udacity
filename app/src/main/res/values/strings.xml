@@ -7,7 +7,6 @@
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="app_name">Popular Movies</string>
 
-
     <string name="backdrop_content_description">Movie backdrop image</string>
     <string name="poster_content_description">Movie poster image</string>
     <string name="trailer_content_description">Trailer preview image</string>
@@ -81,5 +80,7 @@
     <string name="a11y_tagged_image">Tagged image: <xliff:g id="tagged_image">%1$s</xliff:g></string>
     <string name="empty_general">-</string>
     <string name="genre">#<xliff:g id="genre">%1$s</xliff:g></string>
+    <string name="duration">Duration</string>
+    <string name="duration_format"><xliff:g id="genre">%1$d</xliff:g> min</string>
 
 </resources>

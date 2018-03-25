@@ -105,12 +105,35 @@
         android:fontFamily="@font/play_regular"/>
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/durationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
+        android:text="@string/duration"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/originalLanguageTv"
+        android:fontFamily="@font/play_bold"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/durationTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelBarrier"
+        app:layout_constraintTop_toTopOf="@+id/durationLabel"
+        tools:text="120 min"
+        android:fontFamily="@font/play_regular"/>
+
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/budgetLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/details_layout_label_vertical_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/originalLanguageLabel"
+        app:layout_constraintTop_toBottomOf="@+id/durationLabel"
         android:text="@string/budget"
         android:textColor="@color/white"
         android:fontFamily="@font/play_bold"/>
