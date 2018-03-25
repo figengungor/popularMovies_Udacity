@@ -1,12 +1,16 @@
-## Popular Movies Stage 1
+## Popular Movies Stage 2
 
 ![](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
-Second project for Android Nanodegree by Udacity.
+Third project(P2) for Android Nanodegree by Udacity.
 
-Popular or top-rated movies(posters) are displayed in a grid view.
+Popular, top-rated or favorites movies(posters) are displayed in a grid view.
 
-Detail page is displayed with poster, title, rating, release date and overview.
+Detail page is displayed with poster, title, rating, release date, overview and extra more.
+
+Detail page has a favorite button to add movie to or remove movie from favorites collection.
+
+Detail page has trailers and reviews displayed.
 
 ### Configuration
 
@@ -18,9 +22,13 @@ You need to set your api key in your `gradle.properties` file as following:
 
 ### Screenshots
 
-Movie List             |  Movie Detail
+Movie List             |  Movie Detail | Movie Detail 2
+:-------------------------:|:-------------------------:|:-------------------------:
+![](art/movie_list.png)  |  ![](art/movie_detail.png)  |  ![](art/movie_detail2.png)
+
+Cast Detail           |  Tagged Images
 :-------------------------:|:-------------------------:
-![](art/movie_list.png)  |  ![](art/movie_detail.png)
+![](art/cast_detail.png)  |  ![](art/tagged_images.png)
 
 Movie List Landscape             |  Movie Detail Landscape
 :-------------------------:|:-------------------------:
@@ -44,17 +52,27 @@ Movie List Landscape             |  Movie Detail Landscape
 
    [android-gif-drawable](https://github.com/koral--/android-gif-drawable)
 
+   [Stetho](https://github.com/facebook/stetho)
+
+   [ReadMoreTextView](https://github.com/figengungor/ReadMoreTextView)
+
+   [CircleImageView](https://github.com/hdodenhof/CircleImageView)
+
 
 #### Icons
 Icon 1 | Icon 2
 :-------------------------:|:-------------------------:
 ![](art/icon1.png) | ![](art/icon2.png)
 
+Instagram Icon made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com
+
+Twitter Icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from www.flaticon.com
+
+Facebook Icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from www.flaticon.com
+
 #### Gifs
 
 https://media.giphy.com/media/jWexOOlYe241y/giphy.gif
-
-https://gfycat.com/gifs/detail/ThirdEasygoingDeermouse
 
 
 ## License
