@@ -35,7 +35,7 @@ public class GenresAdapter extends
     public void onBindViewHolder(GenreViewHolder holder, int position) {
         final Genre item = items.get(position);
 
-        holder.genreTv.setText("#"+item.getName());
+        holder.genreTv.setText(holder.itemView.getContext().getString(R.string.genre, item.getName()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,12 +5,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.model.Similar;
-import com.figengungor.popularmovies.data.model.Videos;
-import com.figengungor.popularmovies.ui.movieDetail.videos.VideosAdapter;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

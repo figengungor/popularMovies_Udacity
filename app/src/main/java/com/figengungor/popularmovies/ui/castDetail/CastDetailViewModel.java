@@ -6,11 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.CastDetail;
-import com.figengungor.popularmovies.data.model.Movie;
-import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.data.remote.TmdbCallback;
-
-import java.util.List;
 
 /**
  * Created by figengungor on 3/21/2018.

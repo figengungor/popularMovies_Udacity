@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.model.Cast;
-import com.figengungor.popularmovies.data.model.Movie;
 import com.figengungor.popularmovies.utils.DisplayUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
 import java.util.List;

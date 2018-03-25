@@ -67,7 +67,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
         app:srcCompat="@drawable/ic_twitter"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="@string/twitter_profile_content_description"/>
 
     <ImageView
         android:id="@+id/facebookIconIv"
@@ -81,7 +82,8 @@
         app:layout_constraintStart_toEndOf="@+id/twitterIconIv"
         app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
         app:srcCompat="@drawable/ic_facebook"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="@string/facebook_profile_content_description"/>
 
     <ImageView
         android:id="@+id/instagramIconIv"
@@ -95,7 +97,8 @@
         app:layout_constraintStart_toEndOf="@+id/facebookIconIv"
         app:layout_constraintTop_toBottomOf="@+id/placeOfBirthTv"
         app:srcCompat="@drawable/ic_instagram"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="@string/instagram_profile_content_description"/>
 
     <com.borjabravo.readmoretextview.ReadMoreTextView
         android:id="@+id/bioTv"

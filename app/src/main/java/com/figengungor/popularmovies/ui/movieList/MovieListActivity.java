@@ -13,12 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
@@ -26,13 +24,10 @@ import com.figengungor.popularmovies.ui.movieDetail.MovieDetailActivity;
 import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.figengungor.popularmovies.utils.JsonUtils;
 import com.pnikosis.materialishprogress.ProgressWheel;
-
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -40,7 +40,7 @@
             android:parentActivityName=".ui.movieDetail.MovieDetailActivity" />
         <activity
             android:name=".ui.taggedImageList.TaggedImageListActivity"
-            android:label="@string/tagged_images"></activity>
+            android:label="@string/tagged_images" />
     </application>
 
 </manifest>

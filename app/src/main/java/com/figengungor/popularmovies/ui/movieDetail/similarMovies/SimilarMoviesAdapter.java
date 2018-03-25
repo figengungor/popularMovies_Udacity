@@ -5,20 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.model.Movie;
-import com.figengungor.popularmovies.data.model.Video;
 import com.figengungor.popularmovies.utils.DisplayUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

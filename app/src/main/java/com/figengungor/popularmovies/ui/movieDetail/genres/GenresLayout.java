@@ -4,12 +4,10 @@ import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.model.Genre;
-import com.figengungor.popularmovies.data.model.Videos;
-import com.figengungor.popularmovies.ui.movieDetail.videos.VideosAdapter;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ import butterknife.ButterKnife;
  * Created by figengungor on 3/18/2018.
  */
 
-public class GenresLayout extends LinearLayout {
+public class GenresLayout extends FrameLayout {
 
     @BindView(R.id.genresRv)
     RecyclerView genresRv;
@@ -36,7 +34,7 @@ public class GenresLayout extends LinearLayout {
     public GenresLayout(Context context, List<Genre> genres) {
         super(context);
         init(context);
-        if (genres== null || genres.size() == 0){
+        if (genres == null || genres.size() == 0) {
             emptyMessageTv.setVisibility(View.VISIBLE);
         } else {
             emptyMessageTv.setVisibility(View.GONE);

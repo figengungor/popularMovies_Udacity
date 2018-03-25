@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.LinearLayout;
-
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.model.MovieDetailResponse;
 import com.figengungor.popularmovies.utils.DateUtils;

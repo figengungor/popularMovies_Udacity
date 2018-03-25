@@ -44,7 +44,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:background="@color/colorTransparentAccent"
-            android:layout_gravity="top|right"/>
+            android:layout_gravity="top|end"/>
 
     </FrameLayout>
 
@@ -55,8 +55,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="4dp"
         android:layout_below="@+id/videoContent"
-        android:layout_alignRight="@+id/videoContent"
-        android:layout_alignLeft="@id/videoContent"
+        android:layout_alignEnd="@+id/videoContent"
+        android:layout_alignStart="@id/videoContent"
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
         android:fontFamily="@font/play_regular"

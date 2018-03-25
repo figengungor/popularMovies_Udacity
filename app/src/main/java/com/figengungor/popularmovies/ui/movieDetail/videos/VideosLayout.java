@@ -2,14 +2,11 @@ package com.figengungor.popularmovies.ui.movieDetail.videos;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.model.Videos;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

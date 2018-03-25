@@ -75,5 +75,11 @@
     <string name="writer">Writer</string>
     <string name="tagged_images">Tagged Images</string>
     <string name="bio_empty_message">There is no biography about this person, yet.</string>
+    <string name="twitter_profile_content_description">Open twitter profile</string>
+    <string name="facebook_profile_content_description">Open facebook profile</string>
+    <string name="instagram_profile_content_description">Open instagram profile</string>
+    <string name="a11y_tagged_image">Tagged image: <xliff:g id="tagged_image">%1$s</xliff:g></string>
+    <string name="empty_general">-</string>
+    <string name="genre">#<xliff:g id="genre">%1$s</xliff:g></string>
 
 </resources>

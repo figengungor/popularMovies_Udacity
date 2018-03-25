@@ -2,9 +2,7 @@ package com.figengungor.popularmovies.ui.castDetail;
 
 import android.app.Application;
 import android.arch.lifecycle.ViewModelProvider;
-
 import com.figengungor.popularmovies.data.DataManager;
-import com.figengungor.popularmovies.ui.movieList.MovieListViewModel;
 
 /**
  * Created by figengungor on 2/20/2018.

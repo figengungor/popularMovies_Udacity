@@ -16,6 +16,7 @@ import com.figengungor.popularmovies.utils.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,15 +43,19 @@ public class TaggedImageAdapter extends RecyclerView.Adapter<TaggedImageAdapter.
     @Override
     public void onBindViewHolder(@NonNull TaggedImageViewHolder holder, int position) {
         TaggedImage item = items.get(position);
+        String name;
         if (item.getMediaType().equalsIgnoreCase("tv")) {
-            holder.nameTv.setText(item.getMedia().getName());
+            name = item.getMedia().getName();
         } else {
-            holder.nameTv.setText(item.getMedia().getTitle());
+            name = item.getMedia().getTitle();
         }
+
+        holder.nameTv.setText(name);
+        holder.taggedIv.setContentDescription(holder.itemView.getContext().getString(R.string.a11y_tagged_image, name));
 
         ImageUtils.loadImageUrl(item.getFilePath(), holder.taggedIv, ImageUtils.ImageType.POSTER);
 
-        String imageRatio = String.format("%d:%d", item.getWidth(), item.getHeight());
+        String imageRatio = String.format(Locale.getDefault(),"%d:%d", item.getWidth(), item.getHeight());
         set.clone(holder.constraintLayout);
         set.setDimensionRatio(holder.taggedIv.getId(), imageRatio);
         set.applyTo(holder.constraintLayout);

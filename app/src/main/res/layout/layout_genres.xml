@@ -1,35 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:background="@color/colorBackground">
 
-    <FrameLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/genresRv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_genre" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/genresRv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            android:orientation="horizontal"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_genre" />
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/emptyMessageTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/play_regular"
+        android:text="@string/genres_empty_message"
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/emptyMessageTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genres_empty_message"
-            android:textColor="@color/white"
-            android:fontFamily="@font/play_regular"
-            android:layout_gravity="center"
-            android:visibility="gone"/>
-
-    </FrameLayout>
-
-</LinearLayout>
+</FrameLayout>
