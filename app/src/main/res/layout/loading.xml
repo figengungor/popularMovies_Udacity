@@ -10,6 +10,7 @@
         android:layout_height="50dp"
         wheel:matProg_barColor="@color/colorAccent"
         wheel:matProg_progressIndeterminate="true"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 </FrameLayout>
