@@ -28,6 +28,7 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -66,7 +67,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     MovieListViewModel viewModel;
     private static final String TAG = MovieListActivity.class.getSimpleName();
     private static final String KEY_RECYCLERVIEW_STATE = "recyclerview_state";
+    private static final String KEY_MOVIE_LIST_RAW = "movie_list";
     Parcelable recyclerViewState;
+    String movieListRaw = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,14 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         viewModel = ViewModelProviders.
                 of(this, new MovieListViewModelFactory(getApplication(), DataManager.getInstance(getApplication())))
                 .get(MovieListViewModel.class);
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(KEY_MOVIE_LIST_RAW) && viewModel.getMovieList().getValue() == null) {
+                movieListRaw = savedInstanceState.getString(KEY_MOVIE_LIST_RAW);
+                List<Movie> movieList = JsonUtils.convertJsonStringtoMovieListResponse(movieListRaw);
+                viewModel.getMovieList().setValue(movieList);
+            }
+        }
 
         viewModel.getMovieList().observe(this, new Observer<List<Movie>>() {
             @Override
@@ -215,6 +226,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         super.onSaveInstanceState(outState);
         Parcelable state = movieRv.getLayoutManager().onSaveInstanceState();
         outState.putParcelable(KEY_RECYCLERVIEW_STATE, state);
+        if (viewModel.getMovieList().getValue() != null) {
+            movieListRaw = JsonUtils.convertModelToJsonString(viewModel.getMovieList().getValue());
+            outState.putString(KEY_MOVIE_LIST_RAW, movieListRaw);
+        }
     }
 
     @Override

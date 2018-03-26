@@ -41,12 +41,10 @@ import com.figengungor.popularmovies.ui.movieDetail.videos.VideosLayout;
 import com.figengungor.popularmovies.utils.DateUtils;
 import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.figengungor.popularmovies.utils.ImageUtils;
+import com.figengungor.popularmovies.utils.JsonUtils;
 import com.pnikosis.materialishprogress.ProgressWheel;
-
 import org.parceler.Parcels;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -58,10 +56,12 @@ public class MovieDetailActivity extends AppCompatActivity implements
         ReviewsLayout.ReviewsListener {
 
     public static final String EXTRA_MOVIE = "movie";
+    private static final String KEY_MOVIE_DETAIL_RESPONSE_RAW = "movie_detail_response";
     private static final String TAG = MovieDetailActivity.class.getSimpleName();
     Movie movie;
     MovieDetailViewModel viewModel;
     String trailerKey;
+    String movieDetailResponseRaw;
 
     @BindView(R.id.backdropIv)
     ImageView backdropIv;
@@ -126,13 +126,21 @@ public class MovieDetailActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_movie_detail);
         ButterKnife.bind(this);
         movie = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MOVIE));
-        init();
+        init(savedInstanceState);
     }
 
-    private void init() {
+    private void init(Bundle savedInstanceState) {
         viewModel = ViewModelProviders.
                 of(this, new MovieDetailViewModelFactory(getApplication(), DataManager.getInstance(getApplication())))
                 .get(MovieDetailViewModel.class);
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(KEY_MOVIE_DETAIL_RESPONSE_RAW) && viewModel.getMovieDetailResponse().getValue() == null) {
+                movieDetailResponseRaw = savedInstanceState.getString(KEY_MOVIE_DETAIL_RESPONSE_RAW);
+                MovieDetailResponse movieDetailResponse = JsonUtils.convertJsonStringtoMovieDetailResponse(movieDetailResponseRaw);
+                viewModel.getMovieDetailResponse().setValue(movieDetailResponse);
+            }
+        }
 
         viewModel.getIsFavorite().observe(this, new Observer<Boolean>() {
             @Override
@@ -332,6 +340,15 @@ public class MovieDetailActivity extends AppCompatActivity implements
     public void onItemClicked(Movie item) {
         startActivity(new Intent(this, MovieDetailActivity.class)
                 .putExtra(EXTRA_MOVIE, Parcels.wrap(item)));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (viewModel.getMovieDetailResponse().getValue() != null) {
+            movieDetailResponseRaw = JsonUtils.convertModelToJsonString(viewModel.getMovieDetailResponse().getValue());
+            outState.putString(KEY_MOVIE_DETAIL_RESPONSE_RAW, movieDetailResponseRaw);
+        }
     }
 
     @Override
