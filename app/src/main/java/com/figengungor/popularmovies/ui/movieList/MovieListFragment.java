@@ -2,16 +2,21 @@ package com.figengungor.popularmovies.ui.movieList;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -20,22 +25,23 @@ import android.widget.TextView;
 import com.figengungor.popularmovies.R;
 import com.figengungor.popularmovies.data.DataManager;
 import com.figengungor.popularmovies.data.model.Movie;
-import com.figengungor.popularmovies.ui.movieDetail.MovieDetailActivity;
 import com.figengungor.popularmovies.utils.ErrorUtils;
 import com.figengungor.popularmovies.utils.JsonUtils;
 import com.pnikosis.materialishprogress.ProgressWheel;
-import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+import static android.app.Activity.RESULT_OK;
 import static com.figengungor.popularmovies.utils.ErrorUtils.NO_FAVORITES;
 
-public class MovieListActivity extends AppCompatActivity implements MovieAdapter.ItemListener {
+/**
+ * Created by figengungor on 3/28/2018.
+ */
+
+public class MovieListFragment extends Fragment implements MovieAdapter.ItemListener {
 
     private static final int UPDATE_LIST_REQUEST_CODE = 1;
     @BindView(R.id.movieRv)
@@ -64,19 +70,42 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         viewModel.getMovies();
     }
 
+    public interface OnInteractionListener {
+        void onMovieSelected(Movie movie);
+    }
+
+    OnInteractionListener callback;
+
     MovieListViewModel viewModel;
-    private static final String TAG = MovieListActivity.class.getSimpleName();
+    private static final String TAG = MovieListFragment.class.getSimpleName();
     private static final String KEY_RECYCLERVIEW_STATE = "recyclerview_state";
     private static final String KEY_MOVIE_LIST_RAW = "movie_list";
     Parcelable recyclerViewState;
     String movieListRaw = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_list);
-        ButterKnife.bind(this);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         init(savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            callback = (OnInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + "must implement OnInteractionListener");
+        }
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_movie_list, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     private void init(Bundle savedInstanceState) {
@@ -85,7 +114,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         }
 
         viewModel = ViewModelProviders.
-                of(this, new MovieListViewModelFactory(getApplication(), DataManager.getInstance(getApplication())))
+                of(this, new MovieListViewModelFactory(getActivity().getApplication(), DataManager.getInstance(getActivity().getApplication())))
                 .get(MovieListViewModel.class);
 
         if (savedInstanceState != null) {
@@ -135,7 +164,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
 
     private void setupLayoutManager() {
         int spanCount = getResources().getInteger(R.integer.spanCount);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, spanCount);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), spanCount);
         movieRv.setLayoutManager(gridLayoutManager);
     }
 
@@ -147,8 +176,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     }
 
     private void setupToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void setupSpinner() {
@@ -157,7 +186,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
         String[] movieListTypeOptionsArray = getResources().getStringArray(R.array.movie_list_type_options);
         ArrayList<String> movieListTypeOptions = new ArrayList<>(Arrays.asList(movieListTypeOptionsArray));
-        MovieListTypeAdapter adapter = new MovieListTypeAdapter(this, movieListTypeOptions);
+        MovieListTypeAdapter adapter = new MovieListTypeAdapter(getActivity(), movieListTypeOptions);
 
         spinner.setAdapter(adapter);
 
@@ -212,17 +241,16 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
         } else {
             retryBtn.setVisibility(View.VISIBLE);
         }
-        messageTv.setText(ErrorUtils.displayFriendlyErrorMessage(this, throwable));
+        messageTv.setText(ErrorUtils.displayFriendlyErrorMessage(getContext(), throwable));
     }
 
     @Override
     public void onItemClick(Movie movie) {
-        startActivityForResult(new Intent(this, MovieDetailActivity.class)
-                .putExtra(MovieDetailActivity.EXTRA_MOVIE, Parcels.wrap(movie)), UPDATE_LIST_REQUEST_CODE);
+        callback.onMovieSelected(movie);
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Parcelable state = movieRv.getLayoutManager().onSaveInstanceState();
         outState.putParcelable(KEY_RECYCLERVIEW_STATE, state);
@@ -233,7 +261,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == UPDATE_LIST_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -243,4 +271,5 @@ public class MovieListActivity extends AppCompatActivity implements MovieAdapter
             }
         }
     }
+
 }

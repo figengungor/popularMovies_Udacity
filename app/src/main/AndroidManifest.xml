@@ -13,15 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.movieList.MovieListActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".ui.movieDetail.MovieDetailActivity"
             android:parentActivityName=".ui.movieList.MovieListActivity"
             android:theme="@style/Theme.Translucent" />
@@ -41,6 +32,13 @@
         <activity
             android:name=".ui.taggedImageList.TaggedImageListActivity"
             android:label="@string/tagged_images" />
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

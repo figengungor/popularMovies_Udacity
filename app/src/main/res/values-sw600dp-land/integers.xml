@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="spanCount">6</integer>
+    <integer name="spanCount">3</integer>
+    <integer name="movie_detail_videos_recycler_view_visible_item_count">3</integer>
+    <integer name="movie_detail_similar_recycler_view_visible_item_count">3</integer>
 </resources>
